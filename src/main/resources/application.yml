@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    stream:
+      bindings:     
+        jobStatus:
+          destination: wacodis.jobs.status
+          binder: wacodis_rabbit
+          group: jobStatusConsumers
+        jobCreation:
+          destination: wacodis.jobs.creation
+          binder: wacodis_rabbit
+          content-type: application/json
+        jobDeletion:
+          destination: wacodis.jobs.deletion
+          binder: wacodis_rabbit
+          content-type: application/json
+        jobCreationConfirm:
+          destination: wacodis.jobs.creation
+          binder: wacodis_rabbit
+          group: jobCreationConsumers
+      binders:
+        wacodis_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: rabbitmq
+                password: rabbitmq
