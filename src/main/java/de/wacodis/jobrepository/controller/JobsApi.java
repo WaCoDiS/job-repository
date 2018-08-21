@@ -67,14 +67,16 @@ public interface JobsApi {
     }
 
 
-    @ApiOperation(value = "", nickname = "retriebeJobs", notes = "Returns a paginates list of jobs ", response = PaginatedJobResponse.class, tags={  })
+    @ApiOperation(value = "", nickname = "retrieveJobs", notes = "Returns a paginated list of jobs ", response = PaginatedJobResponse.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "job response ", response = PaginatedJobResponse.class),
         @ApiResponse(code = 200, message = "unexpected error ", response = Error.class) })
     @RequestMapping(value = "/jobs",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<PaginatedJobResponse> retriebeJobs(@ApiParam(value = "the maximum number of results (default=100) ") @Valid @RequestParam(value = "page", required = false) Integer page) {
+    default ResponseEntity<PaginatedJobResponse> retrieveJobs(
+            @ApiParam(value = "the page as an offset (default=0) ") @Valid @RequestParam(value = "page", required = false) Integer page,
+            @ApiParam(value = "the maximum number of results (default=100) ") @Valid @RequestParam(value = "size", required = false) Integer size) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
