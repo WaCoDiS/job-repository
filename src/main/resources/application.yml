@@ -1,7 +1,7 @@
 spring:
   cloud:
     stream:
-      bindings:     
+      bindings:
         jobStatus:
           destination: wacodis.jobs.status
           binder: wacodis_rabbit
@@ -28,3 +28,8 @@ spring:
                 port: 5672
                 username: rabbitmq
                 password: rabbitmq
+  data:
+    cassandra:
+      port: 9042
+      keyspace-name: wacodisJobs
+      contactpoints: localhost

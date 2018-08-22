@@ -34,7 +34,7 @@ public class JobsApiController implements JobsApi {
 
     @Override
     public ResponseEntity<Job> createJob(@RequestBody Job job) {
-        job.setId(UUID.randomUUID().toString());
+        job.setId(UUID.randomUUID());
         streams.newJobCreated(job);
         return new ResponseEntity<>(job, HttpStatus.CREATED);
     }

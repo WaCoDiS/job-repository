@@ -22,7 +22,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 import javax.validation.Valid;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-14T16:26:37.937+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-21T11:30:13.332+02:00[Europe/Berlin]")
 
 @Validated
 @Api(value = "jobs", description = "the jobs API")
@@ -35,16 +35,17 @@ public interface JobsApi {
     @ApiOperation(value = "", nickname = "createJob", notes = "Creates a new Job in the repository ", response = Job.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "job response ", response = Job.class),
-        @ApiResponse(code = 200, message = "unexpected error ", response = Error.class) })
+        @ApiResponse(code = 500, message = "unexpected error ", response = Error.class) })
     @RequestMapping(value = "/jobs",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<Job> createJob(@ApiParam(value = "Job to add to the repository" ,required=true )  @Valid @RequestBody Job job) {
+    default ResponseEntity<Job> createJob(@ApiParam(value = "Job to add to the  repository ",required=true)  @Valid @RequestBody Job job
+) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"useCase\" : \"useCase\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ null, null ],  \"name\" : \"name\",  \"description\" : \"description\",  \"timeInterval\" : \"timeInterval\",  \"id\" : \"id\"}");
+                    ApiUtil.setExampleResponse(request, "application/json", "{  \"useCase\" : \"useCase\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ null, null ],  \"name\" : \"name\",  \"description\" : \"description\",  \"timeInterval\" : \"timeInterval\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
                     break;
                 }
             }
@@ -57,11 +58,12 @@ public interface JobsApi {
     @ApiOperation(value = "", nickname = "deleteJob", notes = "deletes a single job based on the ID supplied ", tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 204, message = "job deleted "),
-        @ApiResponse(code = 200, message = "unexpected error ", response = Error.class) })
+        @ApiResponse(code = 500, message = "unexpected error ", response = Error.class) })
     @RequestMapping(value = "/jobs/{id}",
         produces = { "application/json" }, 
         method = RequestMethod.DELETE)
-    default ResponseEntity<Void> deleteJob(@ApiParam(value = "ID of job to delete ",required=true) @PathVariable("id") String id) {
+    default ResponseEntity<Void> deleteJob(@ApiParam(value = "ID of job to delete ",required=true) @PathVariable("id") String id
+) {
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 
     }
@@ -70,11 +72,12 @@ public interface JobsApi {
     @ApiOperation(value = "", nickname = "retriebeJobs", notes = "Returns a paginates list of jobs ", response = PaginatedJobResponse.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "job response ", response = PaginatedJobResponse.class),
-        @ApiResponse(code = 200, message = "unexpected error ", response = Error.class) })
+        @ApiResponse(code = 500, message = "unexpected error ", response = Error.class) })
     @RequestMapping(value = "/jobs",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<PaginatedJobResponse> retriebeJobs(@ApiParam(value = "the maximum number of results (default=100) ") @Valid @RequestParam(value = "page", required = false) Integer page) {
+    default ResponseEntity<PaginatedJobResponse> retriebeJobs(@ApiParam(value = "the maximum number of results (default=100) ") @Valid @RequestParam(value = "page", required = false) Integer page
+) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -91,15 +94,16 @@ public interface JobsApi {
     @ApiOperation(value = "", nickname = "retrieveJobById", notes = "Returns a job based on a single ID ", response = Job.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "job response ", response = Job.class),
-        @ApiResponse(code = 200, message = "unexpected error ", response = Error.class) })
+        @ApiResponse(code = 500, message = "unexpected error ", response = Error.class) })
     @RequestMapping(value = "/jobs/{id}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<Job> retrieveJobById(@ApiParam(value = "ID of job to retrieve ",required=true) @PathVariable("id") String id) {
+    default ResponseEntity<Job> retrieveJobById(@ApiParam(value = "ID of job to retrieve ",required=true) @PathVariable("id") String id
+) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    ApiUtil.setExampleResponse(request, "application/json", "{  \"useCase\" : \"useCase\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ null, null ],  \"name\" : \"name\",  \"description\" : \"description\",  \"timeInterval\" : \"timeInterval\",  \"id\" : \"id\"}");
+                    ApiUtil.setExampleResponse(request, "application/json", "{  \"useCase\" : \"useCase\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ null, null ],  \"name\" : \"name\",  \"description\" : \"description\",  \"timeInterval\" : \"timeInterval\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
                     break;
                 }
             }
