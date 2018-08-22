@@ -1,17 +1,15 @@
 package de.wacodis.api.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import javax.validation.constraints.*;
 
-/**
- * PaginatedResponse
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-20T16:26:51.356+02:00[Europe/Berlin]")
-
+/** PaginatedResponse */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
 public class PaginatedResponse {
-
     @JsonProperty("page")
     private Integer page = null;
 
@@ -30,11 +28,9 @@ public class PaginatedResponse {
      * Get page
      *
      * @return page
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     public Integer getPage() {
         return page;
     }
@@ -52,11 +48,9 @@ public class PaginatedResponse {
      * Get size
      *
      * @return size
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     public Integer getSize() {
         return size;
     }
@@ -74,11 +68,9 @@ public class PaginatedResponse {
      * Get total
      *
      * @return total
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     public Integer getTotal() {
         return total;
     }
@@ -119,8 +111,8 @@ public class PaginatedResponse {
     }
 
     /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
      */
     private String toIndentedString(java.lang.Object o) {
         if (o == null) {

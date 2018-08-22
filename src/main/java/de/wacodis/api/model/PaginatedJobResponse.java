@@ -1,20 +1,18 @@
 package de.wacodis.api.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-/**
- * PaginatedJobResponse
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-20T16:26:51.356+02:00[Europe/Berlin]")
-
+/** PaginatedJobResponse */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
 public class PaginatedJobResponse extends PaginatedResponse {
-
     @JsonProperty("data")
     @Valid
     private List<Job> data = new ArrayList<>();
@@ -33,13 +31,10 @@ public class PaginatedJobResponse extends PaginatedResponse {
      * Get data
      *
      * @return data
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     @Valid
-
     public List<Job> getData() {
         return data;
     }
@@ -57,8 +52,7 @@ public class PaginatedJobResponse extends PaginatedResponse {
             return false;
         }
         PaginatedJobResponse paginatedJobResponse = (PaginatedJobResponse) o;
-        return Objects.equals(this.data, paginatedJobResponse.data)
-                && super.equals(o);
+        return Objects.equals(this.data, paginatedJobResponse.data) && super.equals(o);
     }
 
     @Override
@@ -77,8 +71,8 @@ public class PaginatedJobResponse extends PaginatedResponse {
     }
 
     /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
      */
     private String toIndentedString(java.lang.Object o) {
         if (o == null) {

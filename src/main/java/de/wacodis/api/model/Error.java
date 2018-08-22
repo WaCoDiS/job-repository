@@ -1,17 +1,15 @@
 package de.wacodis.api.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import javax.validation.constraints.*;
 
-/**
- * Error
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-20T16:26:51.356+02:00[Europe/Berlin]")
-
+/** Error */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
 public class Error {
-
     @JsonProperty("code")
     private Integer code = null;
 
@@ -27,11 +25,9 @@ public class Error {
      * Get code
      *
      * @return code
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     public Integer getCode() {
         return code;
     }
@@ -49,11 +45,9 @@ public class Error {
      * Get message
      *
      * @return message
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     public String getMessage() {
         return message;
     }
@@ -71,8 +65,7 @@ public class Error {
             return false;
         }
         Error error = (Error) o;
-        return Objects.equals(this.code, error.code)
-                && Objects.equals(this.message, error.message);
+        return Objects.equals(this.code, error.code) && Objects.equals(this.message, error.message);
     }
 
     @Override
@@ -92,8 +85,8 @@ public class Error {
     }
 
     /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
      */
     private String toIndentedString(java.lang.Object o) {
         if (o == null) {

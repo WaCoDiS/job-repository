@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-14T11:15:46.315+02:00[Europe/Berlin]")
 
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2018-08-22T15:23:21.512+02:00[Europe/Berlin]")
 @Controller
 @RequestMapping("${openapi.waCoDiSJobRepository.base-path:/jobRepository}")
 public class JobsApiController implements JobsApi {

@@ -1,61 +1,26 @@
 package de.wacodis.api.model;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Objects;
 import javax.validation.constraints.*;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
-/**
- * CopernicusSubsetDefinition
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-20T16:26:51.356+02:00[Europe/Berlin]")
+/** CopernicusSubsetDefinition */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
 @UserDefinedType("copernicusSubsetDefinition")
 public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
-
-    /**
-     * shall be used to determine the responsible data backend
-     */
-    public enum SourceTypeEnum {
-        COPERNICUSSUBSETDEFINITION("CopernicusSubsetDefinition");
-
-        private String value;
-
-        SourceTypeEnum(String value) {
-            this.value = value;
-        }
-
-        @Override
-        @JsonValue
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        @JsonCreator
-        public static SourceTypeEnum fromValue(String text) {
-            for (SourceTypeEnum b : SourceTypeEnum.values()) {
-                if (String.valueOf(b.value).equals(text)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + text + "'");
-        }
-    }
-
-    @JsonProperty("sourceType")
-    @Transient
-    private SourceTypeEnum sourceType = null;
-
-    /**
-     * Gets or Sets satellite
-     */
+    /** Gets or Sets satellite */
     public enum SatelliteEnum {
         _1("sentinel-1"),
+
         _2("sentinel-2"),
+
         _3("sentinel-3");
 
         private String value;
@@ -89,28 +54,6 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
     @Column
     private Float maximumCloudCoverage = null;
 
-    public CopernicusSubsetDefinition sourceType(SourceTypeEnum sourceType) {
-        this.sourceType = sourceType;
-        return this;
-    }
-
-    /**
-     * shall be used to determine the responsible data backend
-     *
-     * @return sourceType
-  *
-     */
-    @ApiModelProperty(required = true, value = "shall be used to determine the responsible data backend ")
-    @NotNull
-
-    public SourceTypeEnum getSourceType() {
-        return sourceType;
-    }
-
-    public void setSourceType(SourceTypeEnum sourceType) {
-        this.sourceType = sourceType;
-    }
-
     public CopernicusSubsetDefinition satellite(SatelliteEnum satellite) {
         this.satellite = satellite;
         return this;
@@ -120,11 +63,9 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
      * Get satellite
      *
      * @return satellite
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     public SatelliteEnum getSatellite() {
         return satellite;
     }
@@ -142,11 +83,9 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
      * Get maximumCloudCoverage
      *
      * @return maximumCloudCoverage
-  *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     public Float getMaximumCloudCoverage() {
         return maximumCloudCoverage;
     }
@@ -164,15 +103,15 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
             return false;
         }
         CopernicusSubsetDefinition copernicusSubsetDefinition = (CopernicusSubsetDefinition) o;
-        return Objects.equals(this.sourceType, copernicusSubsetDefinition.sourceType)
-                && Objects.equals(this.satellite, copernicusSubsetDefinition.satellite)
-                && Objects.equals(this.maximumCloudCoverage, copernicusSubsetDefinition.maximumCloudCoverage)
+        return Objects.equals(this.satellite, copernicusSubsetDefinition.satellite)
+                && Objects.equals(
+                        this.maximumCloudCoverage, copernicusSubsetDefinition.maximumCloudCoverage)
                 && super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sourceType, satellite, maximumCloudCoverage, super.hashCode());
+        return Objects.hash(satellite, maximumCloudCoverage, super.hashCode());
     }
 
     @Override
@@ -180,16 +119,17 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
         StringBuilder sb = new StringBuilder();
         sb.append("class CopernicusSubsetDefinition {\n");
         sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-        sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
         sb.append("    satellite: ").append(toIndentedString(satellite)).append("\n");
-        sb.append("    maximumCloudCoverage: ").append(toIndentedString(maximumCloudCoverage)).append("\n");
+        sb.append("    maximumCloudCoverage: ")
+                .append(toIndentedString(maximumCloudCoverage))
+                .append("\n");
         sb.append("}");
         return sb.toString();
     }
 
     /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
      */
     private String toIndentedString(java.lang.Object o) {
         if (o == null) {

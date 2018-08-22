@@ -1,12 +1,8 @@
 package de.wacodis.jobrepository.persistence;
 
 import com.datastax.driver.core.utils.UUIDs;
-import com.google.common.collect.ImmutableSet;
 import de.wacodis.api.model.Job;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 import org.hamcrest.CoreMatchers;
@@ -33,7 +29,7 @@ public class JobRepositoryIT extends AbstractCassandraIT {
         Job j = new Job();
         UUID id = UUIDs.timeBased();
         j.setId(id);
-        j.setCreated(new Date());
+        j.setCreated(LocalDateTime.now());
         j.setName("weirdo wacodo jobo");
         j.setProcessingTool("de.wacodis.wps.landclassification");
         this.repo.save(j);

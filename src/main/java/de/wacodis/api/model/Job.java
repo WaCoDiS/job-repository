@@ -1,12 +1,11 @@
 package de.wacodis.api.model;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import static de.wacodis.api.model.Job.TABLE_NAME;
 import io.swagger.annotations.ApiModelProperty;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -16,11 +15,11 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-/**
- * Job
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-20T16:26:51.356+02:00[Europe/Berlin]")
-@Table(value = TABLE_NAME)
+/** Job */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.SpringCodegen",
+        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
+@Table(value = Job.TABLE_NAME)
 public class Job {
 
     public static final String TABLE_NAME = "jobs";
@@ -43,8 +42,7 @@ public class Job {
     private String useCase = null;
 
     @JsonProperty("created")
-    @Column
-    private Date created = null;
+    private LocalDateTime created = null;
 
     @JsonProperty("timeInterval")
     @Column
@@ -72,12 +70,9 @@ public class Job {
      * Get id
      *
      * @return id
-     *
      */
     @ApiModelProperty(value = "")
-
     @Valid
-
     public UUID getId() {
         return id;
     }
@@ -95,11 +90,9 @@ public class Job {
      * a human friendly short name
      *
      * @return name
-     *
      */
     @ApiModelProperty(required = true, value = "a human friendly short name ")
     @NotNull
-
     public String getName() {
         return name;
     }
@@ -117,10 +110,8 @@ public class Job {
      * a more verbose description of the jobs (e.g. purpose, inputs, ...)
      *
      * @return description
-     *
      */
     @ApiModelProperty(value = "a more verbose description of the jobs (e.g. purpose, inputs, ...) ")
-
     public String getDescription() {
         return description;
     }
@@ -135,14 +126,14 @@ public class Job {
     }
 
     /**
-     * A generic use case reference. This can be used to refer to the use cases
-     * identified during the initial phase of WaCoDiS
+     * A generic use case reference. This can be used to refer to the use cases identified during
+     * the initial phase of WaCoDiS
      *
      * @return useCase
-     *
      */
-    @ApiModelProperty(value = "A generic use case reference. This can be used to refer to the use cases identified during the initial phase of WaCoDiS ")
-
+    @ApiModelProperty(
+            value =
+                    "A generic use case reference. This can be used to refer to the use cases identified during the initial phase of WaCoDiS ")
     public String getUseCase() {
         return useCase;
     }
@@ -151,7 +142,7 @@ public class Job {
         this.useCase = useCase;
     }
 
-    public Job created(Date created) {
+    public Job created(LocalDateTime created) {
         this.created = created;
         return this;
     }
@@ -160,17 +151,14 @@ public class Job {
      * Get created
      *
      * @return created
-     *
      */
     @ApiModelProperty(value = "")
-
     @Valid
-
-    public Date getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
@@ -180,14 +168,14 @@ public class Job {
     }
 
     /**
-     * if present, this describe the recurrency of a job. if not present, the
-     * job is treated as a one-time job
+     * if present, this describe the recurrency of a job. if not present, the job is treated as a
+     * one-time job
      *
      * @return timeInterval
-     *
      */
-    @ApiModelProperty(value = "if present, this describe the recurrency of a job. if not present, the job is treated as a one-time job ")
-
+    @ApiModelProperty(
+            value =
+                    "if present, this describe the recurrency of a job. if not present, the job is treated as a one-time job ")
     public String getTimeInterval() {
         return timeInterval;
     }
@@ -205,13 +193,10 @@ public class Job {
      * Get areaOfInterest
      *
      * @return areaOfInterest
-     *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     @Valid
-
     public JobAreaOfInterest getAreaOfInterest() {
         return areaOfInterest;
     }
@@ -229,11 +214,11 @@ public class Job {
      * the processingTool ID as provided by the WPS tool wrapper
      *
      * @return processingTool
-     *
      */
-    @ApiModelProperty(required = true, value = "the processingTool ID as provided by the WPS tool wrapper ")
+    @ApiModelProperty(
+            required = true,
+            value = "the processingTool ID as provided by the WPS tool wrapper ")
     @NotNull
-
     public String getProcessingTool() {
         return processingTool;
     }
@@ -256,13 +241,10 @@ public class Job {
      * Get inputs
      *
      * @return inputs
-     *
      */
     @ApiModelProperty(required = true, value = "")
     @NotNull
-
     @Valid
-
     public List<AbstractSubsetDefinition> getInputs() {
         return inputs;
     }
@@ -293,7 +275,16 @@ public class Job {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, useCase, created, timeInterval, areaOfInterest, processingTool, inputs);
+        return Objects.hash(
+                id,
+                name,
+                description,
+                useCase,
+                created,
+                timeInterval,
+                areaOfInterest,
+                processingTool,
+                inputs);
     }
 
     @Override
@@ -315,8 +306,8 @@ public class Job {
     }
 
     /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
      */
     private String toIndentedString(java.lang.Object o) {
         if (o == null) {
