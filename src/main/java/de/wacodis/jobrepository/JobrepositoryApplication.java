@@ -5,10 +5,13 @@
  */
 package de.wacodis.jobrepository;
 
+import de.wacodis.jobrepository.controller.ApiOriginFilter;
 import de.wacodis.jobrepository.controller.JobsApi;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import java.util.EnumSet;
+import javax.servlet.DispatcherType;
 
 /**
  *
@@ -32,8 +35,9 @@ public class JobrepositoryApplication extends Application<JobrepositoryConfigura
 
     @Override
     public void run(JobrepositoryConfiguration configuration, Environment environment) throws Exception {
-        JobsApi jobsApi = new JobsApi(null);
-        environment.jersey().register(jobsApi);
+        environment.jersey().register(new JobsApi(null));
+        environment.servlets().addFilter("ApiOriginFiler", new ApiOriginFilter())
+                .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
 
     }
 
