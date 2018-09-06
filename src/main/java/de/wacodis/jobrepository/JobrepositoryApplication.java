@@ -32,7 +32,7 @@ public class JobrepositoryApplication extends Application<JobrepositoryConfigura
 
     @Override
     public String getName() {
-        return "hello-world";
+        return "WaCoDiS Job Repository";
     }
 
     @Override
