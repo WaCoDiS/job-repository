@@ -5,3 +5,5 @@ server:
   connector:
     type: http
     port: 8080
+messages:
+  defaultMessage: "Actually, WaCoDiS has nothing to do and that will remain!"
