@@ -15,11 +15,11 @@ public class LocalDateProvider implements ParamConverterProvider {
             return new ParamConverter<T>() {
                 @SuppressWarnings("unchecked")
                 public T fromString(String value) {
-                    return value!=null ? (T) LocalDate.parse(value) : null;
+                    return value != null ? (T) LocalDate.parse(value) : null;
                 }
 
                 public String toString(T bean) {
-                    return bean!=null ? bean.toString() : "";
+                    return bean != null ? bean.toString() : "";
                 }
             };
         }

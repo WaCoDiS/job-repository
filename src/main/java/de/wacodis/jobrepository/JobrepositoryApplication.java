@@ -27,21 +27,21 @@ public class JobrepositoryApplication extends Application<JobrepositoryConfigura
 
     @Override
     public void initialize(Bootstrap<JobrepositoryConfiguration> bootstrap) {
-        
+
     }
-    
+
     @Override
     public String getName() {
         return "hello-world";
     }
-    
+
     @Override
     public void run(JobrepositoryConfiguration configuration, Environment environment) throws Exception {
         JobsApiServiceFactory.getJobsApi().setDefaultMessage(configuration.getMessageConfiguration().getDefaultMessage());
         environment.jersey().register(new JobsApi(null));
         environment.servlets().addFilter("ApiOriginFiler", new ApiOriginFilter())
                 .addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, "/*");
-        
+
     }
-    
+
 }

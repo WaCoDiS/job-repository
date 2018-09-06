@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @javax.xml.bind.annotation.XmlRootElement
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2018-09-05T11:37:50.848+02:00[Europe/Berlin]")
 public class ApiResponseMessage {
+
     public static final int ERROR = 1;
     public static final int WARNING = 2;
     public static final int INFO = 3;
@@ -15,29 +16,30 @@ public class ApiResponseMessage {
     String type;
     String message;
 
-    public ApiResponseMessage(){}
+    public ApiResponseMessage() {
+    }
 
-    public ApiResponseMessage(int code, String message){
+    public ApiResponseMessage(int code, String message) {
         this.code = code;
-        switch(code){
-        case ERROR:
-            setType("error");
-            break;
-        case WARNING:
-            setType("warning");
-            break;
-        case INFO:
-            setType("info");
-            break;
-        case OK:
-            setType("ok");
-            break;
-        case TOO_BUSY:
-            setType("too busy");
-            break;
-        default:
-            setType("unknown");
-            break;
+        switch (code) {
+            case ERROR:
+                setType("error");
+                break;
+            case WARNING:
+                setType("warning");
+                break;
+            case INFO:
+                setType("info");
+                break;
+            case OK:
+                setType("ok");
+                break;
+            case TOO_BUSY:
+                setType("too busy");
+                break;
+            default:
+                setType("unknown");
+                break;
         }
         this.message = message;
     }

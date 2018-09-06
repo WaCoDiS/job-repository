@@ -9,16 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-
-
 package de.wacodis.api.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.wacodis.api.model.AbstractSubsetDefinition;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.*;
 
@@ -26,127 +22,127 @@ import javax.validation.constraints.*;
  * CopernicusSubsetDefinition
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2018-09-05T11:02:00.597+02:00[Europe/Berlin]")
-public class CopernicusSubsetDefinition extends AbstractSubsetDefinition  {
-  /**
-   * Gets or Sets satellite
-   */
-  public enum SatelliteEnum {
-    _1("sentinel-1"),
-    
-    _2("sentinel-2"),
-    
-    _3("sentinel-3");
+public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
 
-    private String value;
+    /**
+     * Gets or Sets satellite
+     */
+    public enum SatelliteEnum {
+        _1("sentinel-1"),
+        _2("sentinel-2"),
+        _3("sentinel-3");
 
-    SatelliteEnum(String value) {
-      this.value = value;
+        private String value;
+
+        SatelliteEnum(String value) {
+            this.value = value;
+        }
+
+        @Override
+        @JsonValue
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static SatelliteEnum fromValue(String text) {
+            for (SatelliteEnum b : SatelliteEnum.values()) {
+                if (String.valueOf(b.value).equals(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + text + "'");
+        }
+    }
+
+    @JsonProperty("satellite")
+    private SatelliteEnum satellite = null;
+
+    @JsonProperty("maximumCloudCoverage")
+    private Float maximumCloudCoverage = null;
+
+    public CopernicusSubsetDefinition satellite(SatelliteEnum satellite) {
+        this.satellite = satellite;
+        return this;
+    }
+
+    /**
+     * Get satellite
+     *
+     * @return satellite
+     *
+     */
+    @JsonProperty("satellite")
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+    public SatelliteEnum getSatellite() {
+        return satellite;
+    }
+
+    public void setSatellite(SatelliteEnum satellite) {
+        this.satellite = satellite;
+    }
+
+    public CopernicusSubsetDefinition maximumCloudCoverage(Float maximumCloudCoverage) {
+        this.maximumCloudCoverage = maximumCloudCoverage;
+        return this;
+    }
+
+    /**
+     * Get maximumCloudCoverage
+     *
+     * @return maximumCloudCoverage
+     *
+     */
+    @JsonProperty("maximumCloudCoverage")
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+    public Float getMaximumCloudCoverage() {
+        return maximumCloudCoverage;
+    }
+
+    public void setMaximumCloudCoverage(Float maximumCloudCoverage) {
+        this.maximumCloudCoverage = maximumCloudCoverage;
     }
 
     @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static SatelliteEnum fromValue(String text) {
-      for (SatelliteEnum b : SatelliteEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + text + "'");
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CopernicusSubsetDefinition copernicusSubsetDefinition = (CopernicusSubsetDefinition) o;
+        return Objects.equals(this.satellite, copernicusSubsetDefinition.satellite)
+                && Objects.equals(this.maximumCloudCoverage, copernicusSubsetDefinition.maximumCloudCoverage)
+                && super.equals(o);
     }
-  }
 
-  @JsonProperty("satellite")
-  private SatelliteEnum satellite = null;
-
-  @JsonProperty("maximumCloudCoverage")
-  private Float maximumCloudCoverage = null;
-
-  public CopernicusSubsetDefinition satellite(SatelliteEnum satellite) {
-    this.satellite = satellite;
-    return this;
-  }
-
-  /**
-   * Get satellite
-   * @return satellite
-   **/
-  @JsonProperty("satellite")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public SatelliteEnum getSatellite() {
-    return satellite;
-  }
-
-  public void setSatellite(SatelliteEnum satellite) {
-    this.satellite = satellite;
-  }
-
-  public CopernicusSubsetDefinition maximumCloudCoverage(Float maximumCloudCoverage) {
-    this.maximumCloudCoverage = maximumCloudCoverage;
-    return this;
-  }
-
-  /**
-   * Get maximumCloudCoverage
-   * @return maximumCloudCoverage
-   **/
-  @JsonProperty("maximumCloudCoverage")
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-  public Float getMaximumCloudCoverage() {
-    return maximumCloudCoverage;
-  }
-
-  public void setMaximumCloudCoverage(Float maximumCloudCoverage) {
-    this.maximumCloudCoverage = maximumCloudCoverage;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    @Override
+    public int hashCode() {
+        return Objects.hash(satellite, maximumCloudCoverage, super.hashCode());
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CopernicusSubsetDefinition {\n");
+        sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+        sb.append("    satellite: ").append(toIndentedString(satellite)).append("\n");
+        sb.append("    maximumCloudCoverage: ").append(toIndentedString(maximumCloudCoverage)).append("\n");
+        sb.append("}");
+        return sb.toString();
     }
-    CopernicusSubsetDefinition copernicusSubsetDefinition = (CopernicusSubsetDefinition) o;
-    return Objects.equals(this.satellite, copernicusSubsetDefinition.satellite) &&
-        Objects.equals(this.maximumCloudCoverage, copernicusSubsetDefinition.maximumCloudCoverage) &&
-        super.equals(o);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(satellite, maximumCloudCoverage, super.hashCode());
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CopernicusSubsetDefinition {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    satellite: ").append(toIndentedString(satellite)).append("\n");
-    sb.append("    maximumCloudCoverage: ").append(toIndentedString(maximumCloudCoverage)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(java.lang.Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 }
-

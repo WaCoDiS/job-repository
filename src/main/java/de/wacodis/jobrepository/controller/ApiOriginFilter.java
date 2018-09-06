@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaJerseyServerCodegen", date = "2018-09-05T11:37:50.848+02:00[Europe/Berlin]")
 public class ApiOriginFilter implements javax.servlet.Filter {
+
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
         HttpServletResponse res = (HttpServletResponse) response;
@@ -16,7 +17,9 @@ public class ApiOriginFilter implements javax.servlet.Filter {
         chain.doFilter(request, response);
     }
 
-    public void destroy() {}
+    public void destroy() {
+    }
 
-    public void init(FilterConfig filterConfig) throws ServletException {}
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 }

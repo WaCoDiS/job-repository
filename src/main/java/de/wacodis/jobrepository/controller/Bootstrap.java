@@ -2,17 +2,17 @@ package de.wacodis.jobrepository.controller;
 
 import io.swagger.jaxrs.config.SwaggerContextService;
 import io.swagger.models.*;
-import io.swagger.models.auth.*;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
 public class Bootstrap extends HttpServlet {
+
     @Override
     public void init(ServletConfig config) throws ServletException {
-        Info info =
-                new Info()
+        Info info
+                = new Info()
                         .title("OpenAPI Server")
                         .description("The API for the WaCoDiS Job Repository ")
                         .termsOfService("https://wacodis.fbg-hsbo.de/")
