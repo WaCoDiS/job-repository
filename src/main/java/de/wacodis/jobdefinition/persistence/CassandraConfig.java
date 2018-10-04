@@ -48,6 +48,8 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     public CassandraClusterFactoryBean cluster() {
         Integer port = environment.getProperty("spring.data.cassandra.port", Integer.class, 9042);
         String contacts = environment.getProperty("spring.data.cassandra.contactpoints", String.class, "localhost");
+        
+        LOG.info("Using cassandra port {} and contact {}", port, contacts);
 
         CassandraClusterFactoryBean cluster
                 = new CassandraClusterFactoryBean();
@@ -87,7 +89,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         session.setCluster(cluster().getObject());
         session.setKeyspaceName(getKeyspaceName());
         session.setConverter(cassandraConverter());
-        session.setSchemaAction(SchemaAction.RECREATE);
+        session.setSchemaAction(SchemaAction.CREATE_IF_NOT_EXISTS);
         return session;
     }
 }
