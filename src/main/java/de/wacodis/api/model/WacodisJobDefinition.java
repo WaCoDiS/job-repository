@@ -19,10 +19,10 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Table(value = WacodisJobDefinition.TABLE_NAME)
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
 public class WacodisJobDefinition {
     
-    public static final String TABLE_NAME = "jobdefinitions";
+    public static final String TABLE_NAME = "jobDefinitions";
     
     @JsonProperty("id")
     @Id
@@ -45,9 +45,13 @@ public class WacodisJobDefinition {
     @Column
     private DateTime created = null;
 
-    @JsonProperty("timeInterval")
+    @JsonProperty("execution")
     @Column
-    private String timeInterval = null;
+    private WacodisJobDefinitionExecution execution = null;
+
+    @JsonProperty("temporalCoverage")
+    @Column
+    private WacodisJobDefinitionTemporalCoverage temporalCoverage = null;
 
     @JsonProperty("areaOfInterest")
     @Column
@@ -165,26 +169,45 @@ public class WacodisJobDefinition {
         this.created = created;
     }
 
-    public WacodisJobDefinition timeInterval(String timeInterval) {
-        this.timeInterval = timeInterval;
+    public WacodisJobDefinition execution(WacodisJobDefinitionExecution execution) {
+        this.execution = execution;
         return this;
     }
 
     /**
-     * if present, this describe the recurrency of a WacodisJobDefinition. if not present, the
-     * WacodisJobDefinition is treated as a one-time WacodisJobDefinition
+     * Get execution
      *
-     * @return timeInterval
+     * @return execution
      */
-    @ApiModelProperty(
-            value =
-                    "if present, this describe the recurrency of a WacodisJobDefinition. if not present, the WacodisJobDefinition is treated as a one-time WacodisJobDefinition ")
-    public String getTimeInterval() {
-        return timeInterval;
+    @ApiModelProperty(value = "")
+    @Valid
+    public WacodisJobDefinitionExecution getExecution() {
+        return execution;
     }
 
-    public void setTimeInterval(String timeInterval) {
-        this.timeInterval = timeInterval;
+    public void setExecution(WacodisJobDefinitionExecution execution) {
+        this.execution = execution;
+    }
+
+    public WacodisJobDefinition temporalCoverage(
+            WacodisJobDefinitionTemporalCoverage temporalCoverage) {
+        this.temporalCoverage = temporalCoverage;
+        return this;
+    }
+
+    /**
+     * Get temporalCoverage
+     *
+     * @return temporalCoverage
+     */
+    @ApiModelProperty(value = "")
+    @Valid
+    public WacodisJobDefinitionTemporalCoverage getTemporalCoverage() {
+        return temporalCoverage;
+    }
+
+    public void setTemporalCoverage(WacodisJobDefinitionTemporalCoverage temporalCoverage) {
+        this.temporalCoverage = temporalCoverage;
     }
 
     public WacodisJobDefinition areaOfInterest(WacodisJobDefinitionAreaOfInterest areaOfInterest) {
@@ -271,7 +294,8 @@ public class WacodisJobDefinition {
                 && Objects.equals(this.description, wacodisJobDefinition.description)
                 && Objects.equals(this.useCase, wacodisJobDefinition.useCase)
                 && Objects.equals(this.created, wacodisJobDefinition.created)
-                && Objects.equals(this.timeInterval, wacodisJobDefinition.timeInterval)
+                && Objects.equals(this.execution, wacodisJobDefinition.execution)
+                && Objects.equals(this.temporalCoverage, wacodisJobDefinition.temporalCoverage)
                 && Objects.equals(this.areaOfInterest, wacodisJobDefinition.areaOfInterest)
                 && Objects.equals(this.processingTool, wacodisJobDefinition.processingTool)
                 && Objects.equals(this.inputs, wacodisJobDefinition.inputs);
@@ -285,7 +309,8 @@ public class WacodisJobDefinition {
                 description,
                 useCase,
                 created,
-                timeInterval,
+                execution,
+                temporalCoverage,
                 areaOfInterest,
                 processingTool,
                 inputs);
@@ -301,7 +326,8 @@ public class WacodisJobDefinition {
         sb.append("    description: ").append(toIndentedString(description)).append("\n");
         sb.append("    useCase: ").append(toIndentedString(useCase)).append("\n");
         sb.append("    created: ").append(toIndentedString(created)).append("\n");
-        sb.append("    timeInterval: ").append(toIndentedString(timeInterval)).append("\n");
+        sb.append("    execution: ").append(toIndentedString(execution)).append("\n");
+        sb.append("    temporalCoverage: ").append(toIndentedString(temporalCoverage)).append("\n");
         sb.append("    areaOfInterest: ").append(toIndentedString(areaOfInterest)).append("\n");
         sb.append("    processingTool: ").append(toIndentedString(processingTool)).append("\n");
         sb.append("    inputs: ").append(toIndentedString(inputs)).append("\n");

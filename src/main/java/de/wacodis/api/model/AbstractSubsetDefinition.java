@@ -15,7 +15,7 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 @UserDefinedType("abstractSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
@@ -26,7 +26,9 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
     @JsonSubTypes.Type(
             value = CopernicusSubsetDefinition.class,
             name = "CopernicusSubsetDefinition"),
-    @JsonSubTypes.Type(value = GdiDeSubsetDefinition.class, name = "GdiDeSubsetDefinition"),
+    @JsonSubTypes.Type(
+            value = CatalogueSubsetDefinition.class,
+            name = "CatalogueSubsetDefinition"),
 })
 public class AbstractSubsetDefinition {
     /** shall be used to determine the responsible data backend */
@@ -35,7 +37,7 @@ public class AbstractSubsetDefinition {
 
         COPERNICUSSUBSETDEFINITION("CopernicusSubsetDefinition"),
 
-        GDIDESUBSETDEFINITION("GdiDeSubsetDefinition");
+        CATALOGUESUBSETDEFINITION("CatalogueSubsetDefinition");
 
         @Column
         private String value;

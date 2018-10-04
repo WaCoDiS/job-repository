@@ -24,7 +24,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
 @Validated
 @Api(value = "jobDefinitions", description = "the jobDefinitions API")
 public interface JobDefinitionsApi {
@@ -67,7 +67,7 @@ public interface JobDefinitionsApi {
                                     ApiUtil.setExampleResponse(
                                             request,
                                             "application/json",
-                                            "{  \"useCase\" : \"useCase\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"name\" : \"name\",  \"description\" : \"description\",  \"timeInterval\" : \"timeInterval\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
+                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"name\" : \"name\",  \"description\" : \"description\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
                                     break;
                                 }
                             }
@@ -128,7 +128,7 @@ public interface JobDefinitionsApi {
                                     ApiUtil.setExampleResponse(
                                             request,
                                             "application/json",
-                                            "{  \"useCase\" : \"useCase\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"name\" : \"name\",  \"description\" : \"description\",  \"timeInterval\" : \"timeInterval\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
+                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"name\" : \"name\",  \"description\" : \"description\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
                                     break;
                                 }
                             }

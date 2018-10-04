@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 /** Error */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
 public class Error {
     @JsonProperty("code")
     private Integer code = null;

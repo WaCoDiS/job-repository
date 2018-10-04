@@ -11,8 +11,12 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 @UserDefinedType("sensorWebSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
 public class SensorWebSubsetDefinition extends AbstractSubsetDefinition {
+    @JsonProperty("serviceUrl")
+    @Column
+    private String serviceUrl = null;
+
     @JsonProperty("offering")
     @Column
     private String offering = null;
@@ -28,6 +32,26 @@ public class SensorWebSubsetDefinition extends AbstractSubsetDefinition {
     @JsonProperty("procedure")
     @Column
     private String procedure = null;
+
+    public SensorWebSubsetDefinition serviceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+        return this;
+    }
+
+    /**
+     * Get serviceUrl
+     *
+     * @return serviceUrl
+     */
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+    public String getServiceUrl() {
+        return serviceUrl;
+    }
+
+    public void setServiceUrl(String serviceUrl) {
+        this.serviceUrl = serviceUrl;
+    }
 
     public SensorWebSubsetDefinition offering(String offering) {
         this.offering = offering;
@@ -118,7 +142,8 @@ public class SensorWebSubsetDefinition extends AbstractSubsetDefinition {
             return false;
         }
         SensorWebSubsetDefinition sensorWebSubsetDefinition = (SensorWebSubsetDefinition) o;
-        return Objects.equals(this.offering, sensorWebSubsetDefinition.offering)
+        return Objects.equals(this.serviceUrl, sensorWebSubsetDefinition.serviceUrl)
+                && Objects.equals(this.offering, sensorWebSubsetDefinition.offering)
                 && Objects.equals(
                         this.featureOfInterest, sensorWebSubsetDefinition.featureOfInterest)
                 && Objects.equals(this.observedProperty, sensorWebSubsetDefinition.observedProperty)
@@ -129,7 +154,12 @@ public class SensorWebSubsetDefinition extends AbstractSubsetDefinition {
     @Override
     public int hashCode() {
         return Objects.hash(
-                offering, featureOfInterest, observedProperty, procedure, super.hashCode());
+                serviceUrl,
+                offering,
+                featureOfInterest,
+                observedProperty,
+                procedure,
+                super.hashCode());
     }
 
     @Override
@@ -137,6 +167,7 @@ public class SensorWebSubsetDefinition extends AbstractSubsetDefinition {
         StringBuilder sb = new StringBuilder();
         sb.append("class SensorWebSubsetDefinition {\n");
         sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+        sb.append("    serviceUrl: ").append(toIndentedString(serviceUrl)).append("\n");
         sb.append("    offering: ").append(toIndentedString(offering)).append("\n");
         sb.append("    featureOfInterest: ")
                 .append(toIndentedString(featureOfInterest))
