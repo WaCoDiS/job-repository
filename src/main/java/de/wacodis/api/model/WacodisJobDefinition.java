@@ -2,28 +2,28 @@ package de.wacodis.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
-/** Job */
+/** WacodisJobDefinition */
+@Table(value = WacodisJobDefinition.TABLE_NAME)
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
-@Table(value = Job.TABLE_NAME)
-public class Job {
-
-    public static final String TABLE_NAME = "jobs";
-
+        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+public class WacodisJobDefinition {
+    
+    public static final String TABLE_NAME = "jobdefinitions";
+    
     @JsonProperty("id")
     @Id
     @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED)
@@ -42,7 +42,8 @@ public class Job {
     private String useCase = null;
 
     @JsonProperty("created")
-    private LocalDateTime created = null;
+    @Column
+    private DateTime created = null;
 
     @JsonProperty("timeInterval")
     @Column
@@ -50,7 +51,7 @@ public class Job {
 
     @JsonProperty("areaOfInterest")
     @Column
-    private JobAreaOfInterest areaOfInterest = null;
+    private WacodisJobDefinitionAreaOfInterest areaOfInterest = null;
 
     @JsonProperty("processingTool")
     @Column
@@ -59,9 +60,9 @@ public class Job {
     @JsonProperty("inputs")
     @Column
     @Valid
-    private List<AbstractSubsetDefinition> inputs = new ArrayList<>();
+    private List<AbstractSubsetDefinition> inputs = new ArrayList<AbstractSubsetDefinition>();
 
-    public Job id(UUID id) {
+    public WacodisJobDefinition id(UUID id) {
         this.id = id;
         return this;
     }
@@ -81,7 +82,7 @@ public class Job {
         this.id = id;
     }
 
-    public Job name(String name) {
+    public WacodisJobDefinition name(String name) {
         this.name = name;
         return this;
     }
@@ -101,17 +102,19 @@ public class Job {
         this.name = name;
     }
 
-    public Job description(String description) {
+    public WacodisJobDefinition description(String description) {
         this.description = description;
         return this;
     }
 
     /**
-     * a more verbose description of the jobs (e.g. purpose, inputs, ...)
+     * a more verbose description of the WacodisJobDefinitions (e.g. purpose, inputs, ...)
      *
      * @return description
      */
-    @ApiModelProperty(value = "a more verbose description of the jobs (e.g. purpose, inputs, ...) ")
+    @ApiModelProperty(
+            value =
+                    "a more verbose description of the WacodisJobDefinitions (e.g. purpose, inputs, ...) ")
     public String getDescription() {
         return description;
     }
@@ -120,7 +123,7 @@ public class Job {
         this.description = description;
     }
 
-    public Job useCase(String useCase) {
+    public WacodisJobDefinition useCase(String useCase) {
         this.useCase = useCase;
         return this;
     }
@@ -142,7 +145,7 @@ public class Job {
         this.useCase = useCase;
     }
 
-    public Job created(LocalDateTime created) {
+    public WacodisJobDefinition created(DateTime created) {
         this.created = created;
         return this;
     }
@@ -154,28 +157,28 @@ public class Job {
      */
     @ApiModelProperty(value = "")
     @Valid
-    public LocalDateTime getCreated() {
+    public DateTime getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDateTime created) {
+    public void setCreated(DateTime created) {
         this.created = created;
     }
 
-    public Job timeInterval(String timeInterval) {
+    public WacodisJobDefinition timeInterval(String timeInterval) {
         this.timeInterval = timeInterval;
         return this;
     }
 
     /**
-     * if present, this describe the recurrency of a job. if not present, the job is treated as a
-     * one-time job
+     * if present, this describe the recurrency of a WacodisJobDefinition. if not present, the
+     * WacodisJobDefinition is treated as a one-time WacodisJobDefinition
      *
      * @return timeInterval
      */
     @ApiModelProperty(
             value =
-                    "if present, this describe the recurrency of a job. if not present, the job is treated as a one-time job ")
+                    "if present, this describe the recurrency of a WacodisJobDefinition. if not present, the WacodisJobDefinition is treated as a one-time WacodisJobDefinition ")
     public String getTimeInterval() {
         return timeInterval;
     }
@@ -184,7 +187,7 @@ public class Job {
         this.timeInterval = timeInterval;
     }
 
-    public Job areaOfInterest(JobAreaOfInterest areaOfInterest) {
+    public WacodisJobDefinition areaOfInterest(WacodisJobDefinitionAreaOfInterest areaOfInterest) {
         this.areaOfInterest = areaOfInterest;
         return this;
     }
@@ -197,15 +200,15 @@ public class Job {
     @ApiModelProperty(required = true, value = "")
     @NotNull
     @Valid
-    public JobAreaOfInterest getAreaOfInterest() {
+    public WacodisJobDefinitionAreaOfInterest getAreaOfInterest() {
         return areaOfInterest;
     }
 
-    public void setAreaOfInterest(JobAreaOfInterest areaOfInterest) {
+    public void setAreaOfInterest(WacodisJobDefinitionAreaOfInterest areaOfInterest) {
         this.areaOfInterest = areaOfInterest;
     }
 
-    public Job processingTool(String processingTool) {
+    public WacodisJobDefinition processingTool(String processingTool) {
         this.processingTool = processingTool;
         return this;
     }
@@ -227,12 +230,12 @@ public class Job {
         this.processingTool = processingTool;
     }
 
-    public Job inputs(List<AbstractSubsetDefinition> inputs) {
+    public WacodisJobDefinition inputs(List<AbstractSubsetDefinition> inputs) {
         this.inputs = inputs;
         return this;
     }
 
-    public Job addInputsItem(AbstractSubsetDefinition inputsItem) {
+    public WacodisJobDefinition addInputsItem(AbstractSubsetDefinition inputsItem) {
         this.inputs.add(inputsItem);
         return this;
     }
@@ -245,6 +248,7 @@ public class Job {
     @ApiModelProperty(required = true, value = "")
     @NotNull
     @Valid
+    @Size(min = 1)
     public List<AbstractSubsetDefinition> getInputs() {
         return inputs;
     }
@@ -261,16 +265,16 @@ public class Job {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Job job = (Job) o;
-        return Objects.equals(this.id, job.id)
-                && Objects.equals(this.name, job.name)
-                && Objects.equals(this.description, job.description)
-                && Objects.equals(this.useCase, job.useCase)
-                && Objects.equals(this.created, job.created)
-                && Objects.equals(this.timeInterval, job.timeInterval)
-                && Objects.equals(this.areaOfInterest, job.areaOfInterest)
-                && Objects.equals(this.processingTool, job.processingTool)
-                && Objects.equals(this.inputs, job.inputs);
+        WacodisJobDefinition wacodisJobDefinition = (WacodisJobDefinition) o;
+        return Objects.equals(this.id, wacodisJobDefinition.id)
+                && Objects.equals(this.name, wacodisJobDefinition.name)
+                && Objects.equals(this.description, wacodisJobDefinition.description)
+                && Objects.equals(this.useCase, wacodisJobDefinition.useCase)
+                && Objects.equals(this.created, wacodisJobDefinition.created)
+                && Objects.equals(this.timeInterval, wacodisJobDefinition.timeInterval)
+                && Objects.equals(this.areaOfInterest, wacodisJobDefinition.areaOfInterest)
+                && Objects.equals(this.processingTool, wacodisJobDefinition.processingTool)
+                && Objects.equals(this.inputs, wacodisJobDefinition.inputs);
     }
 
     @Override
@@ -290,7 +294,7 @@ public class Job {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class Job {\n");
+        sb.append("class WacodisJobDefinition {\n");
 
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");

@@ -12,9 +12,10 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /** AbstractSubsetDefinition */
+@UserDefinedType("abstractSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
+        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
@@ -27,7 +28,6 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
             name = "CopernicusSubsetDefinition"),
     @JsonSubTypes.Type(value = GdiDeSubsetDefinition.class, name = "GdiDeSubsetDefinition"),
 })
-@UserDefinedType("abstractSubsetDefinition")
 public class AbstractSubsetDefinition {
     /** shall be used to determine the responsible data backend */
     public enum SourceTypeEnum {

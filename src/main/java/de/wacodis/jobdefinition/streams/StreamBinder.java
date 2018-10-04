@@ -1,7 +1,7 @@
 
-package de.wacodis.jobrepository.streams;
+package de.wacodis.jobdefinition.streams;
 
-import de.wacodis.api.model.Job;
+import de.wacodis.api.model.WacodisJobDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -28,13 +28,13 @@ public class StreamBinder implements InitializingBean {
     }
     
     @Async
-    public void newJobCreated(Job theJob) {
+    public void newJobCreated(WacodisJobDefinition theJob) {
         channels.jobCreation().send(MessageBuilder.withPayload(theJob).build());
         LOG.info("Send new job: {}", theJob);
     }
     
     @StreamListener(StreamChannels.JOBCREATION_INPUT)
-    public void onJobCreated(Job job) {
+    public void onJobCreated(WacodisJobDefinition job) {
         LOG.info("Got new job: {}", job);
     }
     

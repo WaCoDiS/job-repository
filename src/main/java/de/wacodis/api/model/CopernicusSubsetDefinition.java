@@ -10,10 +10,10 @@ import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /** CopernicusSubsetDefinition */
+@UserDefinedType("copernicusSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
-@UserDefinedType("copernicusSubsetDefinition")
+        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
 public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
     /** Gets or Sets satellite */
     public enum SatelliteEnum {

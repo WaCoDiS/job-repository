@@ -1,7 +1,7 @@
-package de.wacodis.jobrepository.persistence;
+package de.wacodis.jobdefinition.persistence;
 
 import com.datastax.driver.core.Cluster;
-import de.wacodis.api.model.Job;
+import de.wacodis.api.model.WacodisJobDefinition;
 import java.util.Collections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     
     private static final Logger LOG = LoggerFactory.getLogger(CassandraConfig.class.getName());
 
-    public static final String DEFAULT_KEYSPACE = "wacodisJobs";
+    public static final String DEFAULT_KEYSPACE = "wacodisJobDefinitions";
 
     @Autowired
     private Environment environment;
@@ -62,7 +62,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     @Override
     public CassandraMappingContext cassandraMapping() throws ClassNotFoundException {
         CassandraMappingContext mappingContext = new CassandraMappingContext();
-        mappingContext.setInitialEntitySet(CassandraEntityClassScanner.scan(Job.class.getPackage().getName()));
+        mappingContext.setInitialEntitySet(CassandraEntityClassScanner.scan(WacodisJobDefinition.class.getPackage().getName()));
         
         Cluster cluster = cluster().getObject();
         mappingContext.setUserTypeResolver(new SimpleUserTypeResolver(cluster, getKeyspaceName()));

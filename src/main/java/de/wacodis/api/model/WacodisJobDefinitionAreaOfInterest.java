@@ -10,25 +10,25 @@ import javax.validation.constraints.*;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
-/** JobAreaOfInterest */
+/** WacodisJobDefinitionAreaOfInterest */
+@UserDefinedType("areaOfInterest")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
-@UserDefinedType("areaOfInterest")
-public class JobAreaOfInterest {
+        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+public class WacodisJobDefinitionAreaOfInterest {
     @JsonProperty("extent")
     @Valid
     @Column
     private List<Float> extent = null;
 
-    public JobAreaOfInterest extent(List<Float> extent) {
+    public WacodisJobDefinitionAreaOfInterest extent(List<Float> extent) {
         this.extent = extent;
         return this;
     }
 
-    public JobAreaOfInterest addExtentItem(Float extentItem) {
+    public WacodisJobDefinitionAreaOfInterest addExtentItem(Float extentItem) {
         if (this.extent == null) {
-            this.extent = new ArrayList<>();
+            this.extent = new ArrayList<Float>();
         }
         this.extent.add(extentItem);
         return this;
@@ -60,8 +60,9 @@ public class JobAreaOfInterest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        JobAreaOfInterest jobAreaOfInterest = (JobAreaOfInterest) o;
-        return Objects.equals(this.extent, jobAreaOfInterest.extent);
+        WacodisJobDefinitionAreaOfInterest wacodisJobDefinitionAreaOfInterest =
+                (WacodisJobDefinitionAreaOfInterest) o;
+        return Objects.equals(this.extent, wacodisJobDefinitionAreaOfInterest.extent);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class JobAreaOfInterest {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class JobAreaOfInterest {\n");
+        sb.append("class WacodisJobDefinitionAreaOfInterest {\n");
 
         sb.append("    extent: ").append(toIndentedString(extent)).append("\n");
         sb.append("}");

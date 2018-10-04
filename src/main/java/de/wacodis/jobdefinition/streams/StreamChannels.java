@@ -1,5 +1,5 @@
 
-package de.wacodis.jobrepository.streams;
+package de.wacodis.jobdefinition.streams;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;

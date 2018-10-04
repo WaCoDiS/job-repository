@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.servlet.ServletContext;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-08-14T11:15:46.315+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
 
 @Configuration
 @EnableSwagger2
@@ -25,8 +25,8 @@ public class OpenAPIDocumentationConfig {
 
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("WaCoDiS Job Repository")
-            .description("The API for the WaCoDiS Job Repository ")
+            .title("WaCoDiS JobDefinition API")
+            .description("The API for the WaCoDiS JobDefinitions ")
             .license("Apache 2.0")
             .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0.html")
             .termsOfServiceUrl("https://github.com/WaCoDiS")
@@ -36,14 +36,13 @@ public class OpenAPIDocumentationConfig {
     }
 
     @Bean
-    public Docket customImplementation(ServletContext servletContext, @Value("${openapi.waCoDiSJobRepository.base-path:/jobRepository}") String basePath) {
+    public Docket customImplementation(ServletContext servletContext, @Value("${openapi.waCoDiSJobDefinition.base-path:/wacodis-job-definition-api}") String basePath) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("de.wacodis.jobrepository.controller"))
+                    .apis(RequestHandlerSelectors.basePackage("de.wacodis.jobdefinition.controller"))
                     .build()
-                .pathProvider(new BasePathAwareRelativePathProvider(servletContext, basePath))
-                .directModelSubstitute(java.time.LocalDate.class, java.sql.Date.class)
-                .directModelSubstitute(java.time.OffsetDateTime.class, java.util.Date.class)
+                .directModelSubstitute(org.joda.time.LocalDate.class, java.sql.Date.class)
+                .directModelSubstitute(org.joda.time.DateTime.class, java.util.Date.class)
                 .apiInfo(apiInfo());
     }
 

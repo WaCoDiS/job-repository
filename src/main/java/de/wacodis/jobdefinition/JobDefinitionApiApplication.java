@@ -1,4 +1,4 @@
-package de.wacodis.jobrepository;
+package de.wacodis.jobdefinition;
 
 import java.util.concurrent.Executor;
 import org.springframework.boot.CommandLineRunner;
@@ -13,9 +13,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"org.openapitools", "de.wacodis.jobrepository" , "org.openapitools.configuration"})
+@ComponentScan(basePackages = {"org.openapitools", "de.wacodis.jobdefinition" , "org.openapitools.configuration"})
 @EnableAsync
-public class JobrepositoryApplication implements CommandLineRunner {
+public class JobDefinitionApiApplication implements CommandLineRunner {
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -25,7 +25,7 @@ public class JobrepositoryApplication implements CommandLineRunner {
     }
 
     public static void main(String[] args) throws Exception {
-        new SpringApplication(JobrepositoryApplication.class).run(args);
+        new SpringApplication(JobDefinitionApiApplication.class).run(args);
     }
     
     @Bean
@@ -34,7 +34,7 @@ public class JobrepositoryApplication implements CommandLineRunner {
         executor.setCorePoolSize(2);
         executor.setMaxPoolSize(2);
         executor.setQueueCapacity(500);
-        executor.setThreadNamePrefix("JobRepoAsync-");
+        executor.setThreadNamePrefix("JobApiAsync-");
         executor.initialize();
         return executor;
     }

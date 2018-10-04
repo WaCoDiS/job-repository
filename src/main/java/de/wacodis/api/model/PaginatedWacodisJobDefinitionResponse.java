@@ -8,21 +8,21 @@ import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-/** PaginatedJobResponse */
+/** PaginatedWacodisJobDefinitionResponse */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
-public class PaginatedJobResponse extends PaginatedResponse {
+        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
+public class PaginatedWacodisJobDefinitionResponse extends PaginatedResponse {
     @JsonProperty("data")
     @Valid
-    private List<Job> data = new ArrayList<>();
+    private List<WacodisJobDefinition> data = new ArrayList<WacodisJobDefinition>();
 
-    public PaginatedJobResponse data(List<Job> data) {
+    public PaginatedWacodisJobDefinitionResponse data(List<WacodisJobDefinition> data) {
         this.data = data;
         return this;
     }
 
-    public PaginatedJobResponse addDataItem(Job dataItem) {
+    public PaginatedWacodisJobDefinitionResponse addDataItem(WacodisJobDefinition dataItem) {
         this.data.add(dataItem);
         return this;
     }
@@ -35,11 +35,11 @@ public class PaginatedJobResponse extends PaginatedResponse {
     @ApiModelProperty(required = true, value = "")
     @NotNull
     @Valid
-    public List<Job> getData() {
+    public List<WacodisJobDefinition> getData() {
         return data;
     }
 
-    public void setData(List<Job> data) {
+    public void setData(List<WacodisJobDefinition> data) {
         this.data = data;
     }
 
@@ -51,8 +51,10 @@ public class PaginatedJobResponse extends PaginatedResponse {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PaginatedJobResponse paginatedJobResponse = (PaginatedJobResponse) o;
-        return Objects.equals(this.data, paginatedJobResponse.data) && super.equals(o);
+        PaginatedWacodisJobDefinitionResponse paginatedWacodisJobDefinitionResponse =
+                (PaginatedWacodisJobDefinitionResponse) o;
+        return Objects.equals(this.data, paginatedWacodisJobDefinitionResponse.data)
+                && super.equals(o);
     }
 
     @Override
@@ -63,7 +65,7 @@ public class PaginatedJobResponse extends PaginatedResponse {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class PaginatedJobResponse {\n");
+        sb.append("class PaginatedWacodisJobDefinitionResponse {\n");
         sb.append("    ").append(toIndentedString(super.toString())).append("\n");
         sb.append("    data: ").append(toIndentedString(data)).append("\n");
         sb.append("}");

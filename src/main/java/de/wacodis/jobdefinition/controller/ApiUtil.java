@@ -1,4 +1,4 @@
-package de.wacodis.jobrepository.controller;
+package de.wacodis.jobdefinition.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;

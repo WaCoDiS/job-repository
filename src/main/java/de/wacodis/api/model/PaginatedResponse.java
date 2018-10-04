@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 /** PaginatedResponse */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-08-22T15:27:57.540+02:00[Europe/Berlin]")
+        date = "2018-10-04T12:40:33.556+02:00[Europe/Berlin]")
 public class PaginatedResponse {
     @JsonProperty("page")
     private Integer page = null;

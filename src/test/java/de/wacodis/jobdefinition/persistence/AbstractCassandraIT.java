@@ -1,5 +1,5 @@
 
-package de.wacodis.jobrepository.persistence;
+package de.wacodis.jobdefinition.persistence;
 
 import org.junit.After;
 import org.springframework.beans.factory.annotation.Autowired;

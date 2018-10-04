@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.wacodis.jobrepository.persistence;
+package de.wacodis.jobdefinition.persistence;
 
-import de.wacodis.api.model.Job;
+import de.wacodis.api.model.WacodisJobDefinition;
 import java.util.UUID;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,6 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author <a href="mailto:m.rieke@52north.org">Matthes Rieke</a>
  */
-public interface JobRepository extends CrudRepository<Job, UUID> {
+public interface WacodisJobDefinitionRepository extends CrudRepository<WacodisJobDefinition, UUID> {
 
 }
