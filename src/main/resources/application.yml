@@ -21,13 +21,11 @@ spring:
       binders:
         wacodis_rabbit:
           type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672
-                username: rabbitmq
-                password: rabbitmq
+  rabbitmq:
+    host: eum-dcsi.demo.52north.org
+    port: 5672
+    username: rabbitmq
+    password: rabbitmq
   data:
     cassandra:
       port: 9042

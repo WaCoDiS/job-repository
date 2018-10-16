@@ -36,7 +36,7 @@ public class OpenAPIDocumentationConfig {
     }
 
     @Bean
-    public Docket customImplementation(ServletContext servletContext, @Value("${openapi.waCoDiSJobDefinition.base-path:/wacodis-job-definition-api}") String basePath) {
+    public Docket customImplementation(ServletContext servletContext, @Value("${openapi.waCoDiSJobDefinition.base-path:}") String basePath) {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                     .apis(RequestHandlerSelectors.basePackage("de.wacodis.jobdefinition.controller"))

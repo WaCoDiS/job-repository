@@ -1,21 +1,15 @@
 package de.wacodis.jobdefinition.controller;
 
-import de.wacodis.api.model.PaginatedResponse;
 import de.wacodis.api.model.PaginatedWacodisJobDefinitionResponse;
 import de.wacodis.api.model.WacodisJobDefinition;
 import de.wacodis.jobdefinition.persistence.WacodisJobDefinitionRepository;
 import de.wacodis.jobdefinition.streams.StreamBinder;
-import io.swagger.annotations.ApiParam;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,9 +20,9 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
+        date = "2018-10-16T11:18:11.410+02:00[Europe/Berlin]")
 @Controller
-@RequestMapping("${openapi.waCoDiSJobDefinition.base-path:/wacodis-job-definition-api}")
+@RequestMapping("${openapi.waCoDiSJobDefinition.base-path:}")
 public class JobDefinitionsApiController implements JobDefinitionsApi {
 
     @Autowired
