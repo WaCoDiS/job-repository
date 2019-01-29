@@ -3,7 +3,7 @@ services:
   job-definition-api:
     build:
       context: .
-    image: registry.wacodis.demo.52north.org/job-definition-api:2018-10-17_3
+    image: registry.wacodis.demo.52north.org/job-definition-api:2019-01-29
     ports:
       - 8080:8080
     depends_on:
@@ -18,3 +18,4 @@ services:
       image: cassandra:3.11
       expose:
           - "9042"
+
