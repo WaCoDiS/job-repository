@@ -1,3 +1,5 @@
+server:
+  port: 8081
 spring:
   cloud:
     stream:
@@ -22,7 +24,7 @@ spring:
         wacodis_rabbit:
           type: rabbit
   rabbitmq:
-    host: eum-dcsi.demo.52north.org
+    host: localhost
     port: 5672
     username: rabbitmq
     password: rabbitmq

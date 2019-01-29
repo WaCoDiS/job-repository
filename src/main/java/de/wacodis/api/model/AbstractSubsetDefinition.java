@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -15,7 +16,7 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 @UserDefinedType("abstractSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
@@ -26,11 +27,11 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
     @JsonSubTypes.Type(
             value = CopernicusSubsetDefinition.class,
             name = "CopernicusSubsetDefinition"),
-    @JsonSubTypes.Type(
-            value = CatalogueSubsetDefinition.class,
-            name = "CatalogueSubsetDefinition"),
+    @JsonSubTypes.Type(value = CatalogueSubsetDefinition.class, name = "CatalogueSubsetDefinition"),
 })
-public class AbstractSubsetDefinition {
+public class AbstractSubsetDefinition implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     /** shall be used to determine the responsible data backend */
     public enum SourceTypeEnum {
         SENSORWEBSUBSETDEFINITION("SensorWebSubsetDefinition"),
@@ -64,7 +65,11 @@ public class AbstractSubsetDefinition {
     }
 
     @JsonProperty("sourceType")
-    private SourceTypeEnum sourceType = null;
+    private SourceTypeEnum sourceType;
+
+    @Column
+    @JsonProperty("identifier")
+    private String identifier;
 
     public AbstractSubsetDefinition sourceType(SourceTypeEnum sourceType) {
         this.sourceType = sourceType;
@@ -88,6 +93,26 @@ public class AbstractSubsetDefinition {
         this.sourceType = sourceType;
     }
 
+    public AbstractSubsetDefinition identifier(String identifier) {
+        this.identifier = identifier;
+        return this;
+    }
+
+    /**
+     * Get identifier
+     *
+     * @return identifier
+     */
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -97,12 +122,13 @@ public class AbstractSubsetDefinition {
             return false;
         }
         AbstractSubsetDefinition abstractSubsetDefinition = (AbstractSubsetDefinition) o;
-        return Objects.equals(this.sourceType, abstractSubsetDefinition.sourceType);
+        return Objects.equals(this.sourceType, abstractSubsetDefinition.sourceType)
+                && Objects.equals(this.identifier, abstractSubsetDefinition.identifier);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sourceType);
+        return Objects.hash(sourceType, identifier);
     }
 
     @Override
@@ -111,6 +137,7 @@ public class AbstractSubsetDefinition {
         sb.append("class AbstractSubsetDefinition {\n");
 
         sb.append("    sourceType: ").append(toIndentedString(sourceType)).append("\n");
+        sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
         sb.append("}");
         return sb.toString();
     }

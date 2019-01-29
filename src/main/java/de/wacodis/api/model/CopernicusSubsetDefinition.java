@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -13,8 +14,10 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 @UserDefinedType("copernicusSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class CopernicusSubsetDefinition extends AbstractSubsetDefinition implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     /** Gets or Sets satellite */
     public enum SatelliteEnum {
         _1("sentinel-1"),
@@ -23,6 +26,7 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
 
         _3("sentinel-3");
 
+        @Column
         private String value;
 
         SatelliteEnum(String value) {
@@ -48,11 +52,11 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition {
 
     @JsonProperty("satellite")
     @Column
-    private SatelliteEnum satellite = null;
+    private SatelliteEnum satellite;
 
     @JsonProperty("maximumCloudCoverage")
     @Column
-    private Float maximumCloudCoverage = null;
+    private Float maximumCloudCoverage;
 
     public CopernicusSubsetDefinition satellite(SatelliteEnum satellite) {
         this.satellite = satellite;

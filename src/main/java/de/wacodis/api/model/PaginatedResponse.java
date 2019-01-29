@@ -2,22 +2,25 @@ package de.wacodis.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
 /** PaginatedResponse */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class PaginatedResponse {
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class PaginatedResponse implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @JsonProperty("page")
-    private Integer page = null;
+    private Integer page;
 
     @JsonProperty("size")
-    private Integer size = null;
+    private Integer size;
 
     @JsonProperty("total")
-    private Integer total = null;
+    private Integer total;
 
     public PaginatedResponse page(Integer page) {
         this.page = page;

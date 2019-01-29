@@ -2,19 +2,22 @@ package de.wacodis.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
 /** Error */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class Error {
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class Error implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @JsonProperty("code")
-    private Integer code = null;
+    private Integer code;
 
     @JsonProperty("message")
-    private String message = null;
+    private String message;
 
     public Error code(Integer code) {
         this.code = code;

@@ -3,6 +3,7 @@ package de.wacodis.api.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -18,8 +19,10 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
                 "definition of temporal coverage for which input data (see SubsetDefinitions) is of relevancy. Only one of the properties shall be provided. ")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class WacodisJobDefinitionTemporalCoverage {
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class WacodisJobDefinitionTemporalCoverage implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @JsonProperty("duration")
     @Column
     private String duration = null;

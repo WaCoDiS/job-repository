@@ -1,7 +1,10 @@
 package de.wacodis.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,9 +22,10 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @Table(value = WacodisJobDefinition.TABLE_NAME)
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class WacodisJobDefinition {
-    
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class WacodisJobDefinition implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public static final String TABLE_NAME = "jobDefinitions";
     
     @JsonProperty("id")
@@ -45,8 +49,45 @@ public class WacodisJobDefinition {
     @Column
     private DateTime created = null;
 
-    @JsonProperty("execution")
+    @JsonProperty("lastFinishedExecution")
     @Column
+    private DateTime lastFinishedExecution;
+
+    /** Gets or Sets status */
+    public enum StatusEnum {
+        WAITING("waiting"),
+
+        RUNNING("running"),
+
+        DELETED("deleted");
+
+        private String value;
+
+        StatusEnum(String value) {
+            this.value = value;
+        }
+
+        @Override
+        @JsonValue
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static StatusEnum fromValue(String text) {
+            for (StatusEnum b : StatusEnum.values()) {
+                if (String.valueOf(b.value).equals(text)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + text + "'");
+        }
+    }
+
+    @JsonProperty("status")
+    private StatusEnum status;
+
+    @JsonProperty("execution")
     private WacodisJobDefinitionExecution execution = null;
 
     @JsonProperty("temporalCoverage")
@@ -167,6 +208,45 @@ public class WacodisJobDefinition {
 
     public void setCreated(DateTime created) {
         this.created = created;
+    }
+
+    public WacodisJobDefinition lastFinishedExecution(DateTime lastFinishedExecution) {
+        this.lastFinishedExecution = lastFinishedExecution;
+        return this;
+    }
+
+    /**
+     * Get lastFinishedExecution
+     *
+     * @return lastFinishedExecution
+     */
+    @ApiModelProperty(value = "")
+    @Valid
+    public DateTime getLastFinishedExecution() {
+        return lastFinishedExecution;
+    }
+
+    public void setLastFinishedExecution(DateTime lastFinishedExecution) {
+        this.lastFinishedExecution = lastFinishedExecution;
+    }
+
+    public WacodisJobDefinition status(StatusEnum status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @ApiModelProperty(value = "")
+    public StatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEnum status) {
+        this.status = status;
     }
 
     public WacodisJobDefinition execution(WacodisJobDefinitionExecution execution) {
@@ -294,6 +374,9 @@ public class WacodisJobDefinition {
                 && Objects.equals(this.description, wacodisJobDefinition.description)
                 && Objects.equals(this.useCase, wacodisJobDefinition.useCase)
                 && Objects.equals(this.created, wacodisJobDefinition.created)
+                && Objects.equals(
+                        this.lastFinishedExecution, wacodisJobDefinition.lastFinishedExecution)
+                && Objects.equals(this.status, wacodisJobDefinition.status)
                 && Objects.equals(this.execution, wacodisJobDefinition.execution)
                 && Objects.equals(this.temporalCoverage, wacodisJobDefinition.temporalCoverage)
                 && Objects.equals(this.areaOfInterest, wacodisJobDefinition.areaOfInterest)
@@ -309,6 +392,8 @@ public class WacodisJobDefinition {
                 description,
                 useCase,
                 created,
+                lastFinishedExecution,
+                status,
                 execution,
                 temporalCoverage,
                 areaOfInterest,
@@ -326,6 +411,10 @@ public class WacodisJobDefinition {
         sb.append("    description: ").append(toIndentedString(description)).append("\n");
         sb.append("    useCase: ").append(toIndentedString(useCase)).append("\n");
         sb.append("    created: ").append(toIndentedString(created)).append("\n");
+        sb.append("    lastFinishedExecution: ")
+                .append(toIndentedString(lastFinishedExecution))
+                .append("\n");
+        sb.append("    status: ").append(toIndentedString(status)).append("\n");
         sb.append("    execution: ").append(toIndentedString(execution)).append("\n");
         sb.append("    temporalCoverage: ").append(toIndentedString(temporalCoverage)).append("\n");
         sb.append("    areaOfInterest: ").append(toIndentedString(areaOfInterest)).append("\n");

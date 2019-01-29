@@ -2,6 +2,7 @@ package de.wacodis.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -14,8 +15,10 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 @UserDefinedType("areaOfInterest")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class WacodisJobDefinitionAreaOfInterest {
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class WacodisJobDefinitionAreaOfInterest implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @JsonProperty("extent")
     @Valid
     @Column
@@ -41,8 +44,10 @@ public class WacodisJobDefinitionAreaOfInterest {
      * @return extent
      */
     @ApiModelProperty(
+            required = true,
             value =
                     "the coordinates, using EPSG:4326, (in analogy to GeoJSON bbox) in the order \"southwesterly point followed by more northeasterly point\". Schema is [minLon, minLat, maxLon, maxLat] ")
+    @NotNull
     @Size(min = 4, max = 4)
     public List<Float> getExtent() {
         return extent;

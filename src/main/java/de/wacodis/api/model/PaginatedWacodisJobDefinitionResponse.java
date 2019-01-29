@@ -2,6 +2,7 @@ package de.wacodis.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,11 +12,82 @@ import javax.validation.constraints.*;
 /** PaginatedWacodisJobDefinitionResponse */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class PaginatedWacodisJobDefinitionResponse extends PaginatedResponse {
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class PaginatedWacodisJobDefinitionResponse implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @JsonProperty("page")
+    private Integer page;
+
+    @JsonProperty("size")
+    private Integer size;
+
+    @JsonProperty("total")
+    private Integer total;
+
     @JsonProperty("data")
     @Valid
     private List<WacodisJobDefinition> data = new ArrayList<WacodisJobDefinition>();
+
+    public PaginatedWacodisJobDefinitionResponse page(Integer page) {
+        this.page = page;
+        return this;
+    }
+
+    /**
+     * Get page
+     *
+     * @return page
+     */
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+    public Integer getPage() {
+        return page;
+    }
+
+    public void setPage(Integer page) {
+        this.page = page;
+    }
+
+    public PaginatedWacodisJobDefinitionResponse size(Integer size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     */
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public PaginatedWacodisJobDefinitionResponse total(Integer total) {
+        this.total = total;
+        return this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return total
+     */
+    @ApiModelProperty(required = true, value = "")
+    @NotNull
+    public Integer getTotal() {
+        return total;
+    }
+
+    public void setTotal(Integer total) {
+        this.total = total;
+    }
 
     public PaginatedWacodisJobDefinitionResponse data(List<WacodisJobDefinition> data) {
         this.data = data;
@@ -53,20 +125,25 @@ public class PaginatedWacodisJobDefinitionResponse extends PaginatedResponse {
         }
         PaginatedWacodisJobDefinitionResponse paginatedWacodisJobDefinitionResponse =
                 (PaginatedWacodisJobDefinitionResponse) o;
-        return Objects.equals(this.data, paginatedWacodisJobDefinitionResponse.data)
-                && super.equals(o);
+        return Objects.equals(this.page, paginatedWacodisJobDefinitionResponse.page)
+                && Objects.equals(this.size, paginatedWacodisJobDefinitionResponse.size)
+                && Objects.equals(this.total, paginatedWacodisJobDefinitionResponse.total)
+                && Objects.equals(this.data, paginatedWacodisJobDefinitionResponse.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(data, super.hashCode());
+        return Objects.hash(page, size, total, data);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class PaginatedWacodisJobDefinitionResponse {\n");
-        sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+
+        sb.append("    page: ").append(toIndentedString(page)).append("\n");
+        sb.append("    size: ").append(toIndentedString(size)).append("\n");
+        sb.append("    total: ").append(toIndentedString(total)).append("\n");
         sb.append("    data: ").append(toIndentedString(data)).append("\n");
         sb.append("}");
         return sb.toString();

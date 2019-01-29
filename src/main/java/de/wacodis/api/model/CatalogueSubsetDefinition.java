@@ -2,6 +2,7 @@ package de.wacodis.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 import org.springframework.data.cassandra.core.mapping.Column;
@@ -11,34 +12,36 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 @UserDefinedType("CatalogueSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class CatalogueSubsetDefinition extends AbstractSubsetDefinition {
-    @JsonProperty("identifier")
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class CatalogueSubsetDefinition extends AbstractSubsetDefinition implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @JsonProperty("datasetIdentifier")
     @Column
-    private String identifier = null;
+    private String datasetIdentifier;
 
     @JsonProperty("serviceUrl")
     @Column
     private Object serviceUrl = null;
 
-    public CatalogueSubsetDefinition identifier(String identifier) {
-        this.identifier = identifier;
+    public CatalogueSubsetDefinition datasetIdentifier(String datasetIdentifier) {
+        this.datasetIdentifier = datasetIdentifier;
         return this;
     }
 
     /**
      * the id of the dataset within the catalogue
      *
-     * @return identifier
+     * @return datasetIdentifier
      */
     @ApiModelProperty(required = true, value = "the id of the dataset within the catalogue ")
     @NotNull
-    public String getIdentifier() {
-        return identifier;
+    public String getDatasetIdentifier() {
+        return datasetIdentifier;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setDatasetIdentifier(String datasetIdentifier) {
+        this.datasetIdentifier = datasetIdentifier;
     }
 
     public CatalogueSubsetDefinition serviceUrl(Object serviceUrl) {
@@ -69,15 +72,15 @@ public class CatalogueSubsetDefinition extends AbstractSubsetDefinition {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CatalogueSubsetDefinition CatalogueSubsetDefinition = (CatalogueSubsetDefinition) o;
-        return Objects.equals(this.identifier, CatalogueSubsetDefinition.identifier)
-                && Objects.equals(this.serviceUrl, CatalogueSubsetDefinition.serviceUrl)
+        CatalogueSubsetDefinition catalogueSubsetDefinition = (CatalogueSubsetDefinition) o;
+        return Objects.equals(this.datasetIdentifier, catalogueSubsetDefinition.datasetIdentifier)
+                && Objects.equals(this.serviceUrl, catalogueSubsetDefinition.serviceUrl)
                 && super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(identifier, serviceUrl, super.hashCode());
+        return Objects.hash(datasetIdentifier, serviceUrl, super.hashCode());
     }
 
     @Override
@@ -85,7 +88,9 @@ public class CatalogueSubsetDefinition extends AbstractSubsetDefinition {
         StringBuilder sb = new StringBuilder();
         sb.append("class CatalogueSubsetDefinition {\n");
         sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-        sb.append("    identifier: ").append(toIndentedString(identifier)).append("\n");
+        sb.append("    datasetIdentifier: ")
+                .append(toIndentedString(datasetIdentifier))
+                .append("\n");
         sb.append("    serviceUrl: ").append(toIndentedString(serviceUrl)).append("\n");
         sb.append("}");
         return sb.toString();

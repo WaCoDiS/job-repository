@@ -3,8 +3,10 @@ package de.wacodis.api.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.UserDefinedType;
@@ -20,8 +22,10 @@ import org.springframework.data.cassandra.core.mapping.UserDefinedType;
                 "if present, this describe the execution pattern of a WacodisJobDefinition. if not present, the WacodisJobDefinition is treated as a one-time execution. Only one of the properties shall be provided. ")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2018-10-04T15:06:06.366+02:00[Europe/Berlin]")
-public class WacodisJobDefinitionExecution {
+        date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
+public class WacodisJobDefinitionExecution implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @JsonProperty("pattern")
     @Column
     private String pattern = null;
@@ -66,7 +70,8 @@ public class WacodisJobDefinitionExecution {
     @ApiModelProperty(
             value =
                     "the execution is scheduled by the occurence of an event (e.g. new data available); WIP - format to be defined. ")
-    public Map<String, String> getEvent() {
+    @Valid
+    public Object getEvent() {
         return event;
     }
 
