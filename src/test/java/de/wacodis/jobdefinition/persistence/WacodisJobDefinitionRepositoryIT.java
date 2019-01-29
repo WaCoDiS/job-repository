@@ -1,7 +1,10 @@
 package de.wacodis.jobdefinition.persistence;
 
 import com.datastax.driver.core.utils.UUIDs;
+import de.wacodis.api.model.AbstractSubsetDefinition;
+import de.wacodis.api.model.SensorWebSubsetDefinition;
 import de.wacodis.api.model.WacodisJobDefinition;
+import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 import org.hamcrest.CoreMatchers;
@@ -32,13 +35,27 @@ public class WacodisJobDefinitionRepositoryIT extends AbstractCassandraIT {
         j.setCreated(new DateTime());
         j.setName("weirdo wacodo jobo");
         j.setProcessingTool("de.wacodis.wps.landclassification");
+        
+        SensorWebSubsetDefinition swe = new SensorWebSubsetDefinition()
+                .featureOfInterest("test-feature")
+                .observedProperty("obs-prop")
+                .offering("offering1")
+                .procedure("proc1")
+                .serviceUrl("https://service.url");
+        
+        j.setInputs(Collections.singletonList(swe));
         this.repo.save(j);
         
         Optional<WacodisJobDefinition> retrieved = this.repo.findById(id);
         Assert.assertThat(retrieved.isPresent(), CoreMatchers.is(true));
         Assert.assertThat(retrieved.get().getName(), CoreMatchers.equalTo("weirdo wacodo jobo"));
         Assert.assertThat(retrieved.get().getProcessingTool(), CoreMatchers.equalTo("de.wacodis.wps.landclassification"));
+        Assert.assertThat(retrieved.get().getInputs().size(), CoreMatchers.is(1));
+        
+        AbstractSubsetDefinition def1 = retrieved.get().getInputs().get(0);
+        Assert.assertThat(def1, CoreMatchers.instanceOf(SensorWebSubsetDefinition.class));
+        SensorWebSubsetDefinition swe2 = (SensorWebSubsetDefinition) def1;
+        Assert.assertThat(swe2.getFeatureOfInterest(), CoreMatchers.equalTo("test-feature"));
     }
-
 
 }
