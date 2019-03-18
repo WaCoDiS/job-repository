@@ -7,11 +7,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /** CopernicusSubsetDefinition */
-@UserDefinedType("copernicusSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
         date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
@@ -26,7 +23,6 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition impleme
 
         _3("sentinel-3");
 
-        @Column
         private String value;
 
         SatelliteEnum(String value) {
@@ -51,11 +47,9 @@ public class CopernicusSubsetDefinition extends AbstractSubsetDefinition impleme
     }
 
     @JsonProperty("satellite")
-    @Column
     private SatelliteEnum satellite;
 
     @JsonProperty("maximumCloudCoverage")
-    @Column
     private Float maximumCloudCoverage;
 
     public CopernicusSubsetDefinition satellite(SatelliteEnum satellite) {

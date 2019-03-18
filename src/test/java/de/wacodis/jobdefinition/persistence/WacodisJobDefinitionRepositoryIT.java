@@ -1,6 +1,5 @@
 package de.wacodis.jobdefinition.persistence;
 
-import com.datastax.driver.core.utils.UUIDs;
 import de.wacodis.api.model.AbstractSubsetDefinition;
 import de.wacodis.api.model.SensorWebSubsetDefinition;
 import de.wacodis.api.model.WacodisJobDefinition;
@@ -21,8 +20,8 @@ import org.joda.time.DateTime;
  * @author <a href="mailto:m.rieke@52north.org">Matthes Rieke</a>
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {CassandraConfig.class, WacodisJobDefinitionRepository.class})
-public class WacodisJobDefinitionRepositoryIT extends AbstractCassandraIT {
+@SpringBootTest(classes = {ElasticsearchConfig.class, WacodisJobDefinitionRepository.class})
+public class WacodisJobDefinitionRepositoryIT extends AbstractElasticsearchIT {
     
     @Autowired
     private WacodisJobDefinitionRepository repo;
@@ -30,18 +29,18 @@ public class WacodisJobDefinitionRepositoryIT extends AbstractCassandraIT {
     @Test
     public void testJobRoundtrip() {
         WacodisJobDefinition j = new WacodisJobDefinition();
-        UUID id = UUIDs.timeBased();
+        UUID id = UUID.randomUUID();
         j.setId(id);
         j.setCreated(new DateTime());
         j.setName("weirdo wacodo jobo");
         j.setProcessingTool("de.wacodis.wps.landclassification");
         
-        SensorWebSubsetDefinition swe = new SensorWebSubsetDefinition()
+        AbstractSubsetDefinition swe = new SensorWebSubsetDefinition()
                 .featureOfInterest("test-feature")
                 .observedProperty("obs-prop")
                 .offering("offering1")
                 .procedure("proc1")
-                .serviceUrl("https://service.url");
+                .serviceUrl("https://service.url").sourceType(AbstractSubsetDefinition.SourceTypeEnum.SENSORWEBSUBSETDEFINITION);
         
         j.setInputs(Collections.singletonList(swe));
         this.repo.save(j);

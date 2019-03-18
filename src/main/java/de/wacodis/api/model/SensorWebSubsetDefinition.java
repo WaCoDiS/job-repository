@@ -5,11 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /** SensorWebSubsetDefinition */
-@UserDefinedType("sensorWebSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
         date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
@@ -17,23 +14,18 @@ public class SensorWebSubsetDefinition extends AbstractSubsetDefinition implemen
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("serviceUrl")
-    @Column
     private String serviceUrl;
 
     @JsonProperty("offering")
-    @Column
     private String offering;
 
     @JsonProperty("featureOfInterest")
-    @Column
     private String featureOfInterest;
 
     @JsonProperty("observedProperty")
-    @Column
     private String observedProperty;
 
     @JsonProperty("procedure")
-    @Column
     private String procedure;
 
     public SensorWebSubsetDefinition serviceUrl(String serviceUrl) {

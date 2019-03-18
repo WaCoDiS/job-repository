@@ -7,16 +7,12 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
 import javax.validation.Valid;
-import javax.validation.constraints.*;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /**
  * if present, this describe the execution pattern of a WacodisJobDefinition. if not present, the
  * WacodisJobDefinition is treated as a one-time execution. Only one of the properties shall be
  * provided.
  */
-@UserDefinedType("execution")
 @ApiModel(
         description =
                 "if present, this describe the execution pattern of a WacodisJobDefinition. if not present, the WacodisJobDefinition is treated as a one-time execution. Only one of the properties shall be provided. ")
@@ -27,11 +23,9 @@ public class WacodisJobDefinitionExecution implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("pattern")
-    @Column
     private String pattern = null;
 
     @JsonProperty("event")
-    @Column
     private Map<String, String> event = null;
 
     public WacodisJobDefinitionExecution pattern(String pattern) {

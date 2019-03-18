@@ -5,11 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /** CatalogueSubsetDefinition */
-@UserDefinedType("CatalogueSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
         date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
@@ -17,11 +14,9 @@ public class CatalogueSubsetDefinition extends AbstractSubsetDefinition implemen
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("datasetIdentifier")
-    @Column
     private String datasetIdentifier;
 
     @JsonProperty("serviceUrl")
-    @Column
     private Object serviceUrl = null;
 
     public CatalogueSubsetDefinition datasetIdentifier(String datasetIdentifier) {

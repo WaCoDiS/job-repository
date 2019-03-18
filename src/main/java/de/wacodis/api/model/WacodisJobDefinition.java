@@ -13,13 +13,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
-import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /** WacodisJobDefinition */
-@Table(value = WacodisJobDefinition.TABLE_NAME)
+@Document(indexName = "wacodis", type = "job")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
         date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
@@ -30,27 +27,21 @@ public class WacodisJobDefinition implements Serializable {
     
     @JsonProperty("id")
     @Id
-    @PrimaryKeyColumn(type = PrimaryKeyType.PARTITIONED)
     private UUID id = null;
 
     @JsonProperty("name")
-    @Column
     private String name = null;
 
     @JsonProperty("description")
-    @Column
     private String description = null;
 
     @JsonProperty("useCase")
-    @Column
     private String useCase = null;
 
     @JsonProperty("created")
-    @Column
     private DateTime created = null;
 
     @JsonProperty("lastFinishedExecution")
-    @Column
     private DateTime lastFinishedExecution;
 
     /** Gets or Sets status */
@@ -91,20 +82,15 @@ public class WacodisJobDefinition implements Serializable {
     private WacodisJobDefinitionExecution execution = null;
 
     @JsonProperty("temporalCoverage")
-    @Column
     private WacodisJobDefinitionTemporalCoverage temporalCoverage = null;
 
     @JsonProperty("areaOfInterest")
-    @Column
     private WacodisJobDefinitionAreaOfInterest areaOfInterest = null;
 
     @JsonProperty("processingTool")
-    @Column
     private String processingTool = null;
 
     @JsonProperty("inputs")
-    @Column
-    @Valid
     private List<AbstractSubsetDefinition> inputs = new ArrayList<AbstractSubsetDefinition>();
 
     public WacodisJobDefinition id(UUID id) {

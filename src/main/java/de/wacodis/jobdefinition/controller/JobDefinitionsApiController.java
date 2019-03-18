@@ -1,6 +1,5 @@
 package de.wacodis.jobdefinition.controller;
 
-import com.datastax.driver.core.PagingState;
 import de.wacodis.api.model.PaginatedWacodisJobDefinitionResponse;
 import de.wacodis.api.model.WacodisJobDefinition;
 import de.wacodis.jobdefinition.persistence.WacodisJobDefinitionRepository;
@@ -8,14 +7,8 @@ import de.wacodis.jobdefinition.streams.StreamBinder;
 import io.swagger.annotations.ApiParam;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.cassandra.core.query.CassandraPageRequest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -66,27 +59,9 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
         Integer actualPage = Optional.ofNullable(page).orElse(0);
         Integer actualSize = Optional.ofNullable(size).orElse(10);
         
-        /** cassandra requires a paging state (it supported fetch-forward only)
-         * this is a workaround at the moment which does not scale as it
-         * fetches all pages
-         * TODO: think about alternatives, maybe serialize the cache state
-         * in the response for later usage in the next paging request
-         */
-        PagingState pagingState = null;
-        CassandraPageRequest currentPageable = CassandraPageRequest.first(actualSize);
-        Slice<WacodisJobDefinition> results = this.repo.findAll(CassandraPageRequest.of(currentPageable, pagingState));
+        PageRequest currentPageable = PageRequest.of(actualPage, actualSize);
+        Slice<WacodisJobDefinition> results = this.repo.findAll(currentPageable);
 
-        int currentPage = 0;        
-        while (currentPage++ < actualPage) {
-            if (results.nextPageable() instanceof CassandraPageRequest) {
-                currentPageable = (CassandraPageRequest) results.nextPageable();
-                pagingState = currentPageable.getPagingState();
-                results = this.repo.findAll(CassandraPageRequest.of(currentPageable, pagingState));
-            } else {
-                break;
-            }
-        }
-        
         if (results == null || results.getNumberOfElements() == 0) {
             return new ResponseEntity<>(new PaginatedWacodisJobDefinitionResponse(), HttpStatus.OK);
         }

@@ -26,7 +26,6 @@ public class PaginatedWacodisJobDefinitionResponse implements Serializable {
     private Integer total;
 
     @JsonProperty("data")
-    @Valid
     private List<WacodisJobDefinition> data = new ArrayList<WacodisJobDefinition>();
 
     public PaginatedWacodisJobDefinitionResponse page(Integer page) {

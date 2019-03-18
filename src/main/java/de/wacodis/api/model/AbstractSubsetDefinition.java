@@ -9,17 +9,14 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /** AbstractSubsetDefinition */
-@UserDefinedType("abstractSubsetDefinition")
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
         date = "2019-01-29T11:23:45.055+01:00[Europe/Berlin]")
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
+        include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "sourceType",
         visible = true)
 @JsonSubTypes({
@@ -40,7 +37,6 @@ public class AbstractSubsetDefinition implements Serializable {
 
         CATALOGUESUBSETDEFINITION("CatalogueSubsetDefinition");
 
-        @Column
         private String value;
 
         SourceTypeEnum(String value) {
@@ -67,7 +63,6 @@ public class AbstractSubsetDefinition implements Serializable {
     @JsonProperty("sourceType")
     private SourceTypeEnum sourceType;
 
-    @Column
     @JsonProperty("identifier")
     private String identifier;
 

@@ -5,15 +5,11 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.validation.constraints.*;
-import org.springframework.data.cassandra.core.mapping.Column;
-import org.springframework.data.cassandra.core.mapping.UserDefinedType;
 
 /**
  * definition of temporal coverage for which input data (see SubsetDefinitions) is of relevancy.
  * Only one of the properties shall be provided.
  */
-@UserDefinedType("temporalCoverage")
 @ApiModel(
         description =
                 "definition of temporal coverage for which input data (see SubsetDefinitions) is of relevancy. Only one of the properties shall be provided. ")
@@ -24,11 +20,9 @@ public class WacodisJobDefinitionTemporalCoverage implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty("duration")
-    @Column
     private String duration = null;
 
     @JsonProperty("previousExecution")
-    @Column
     private Boolean previousExecution = null;
 
     public WacodisJobDefinitionTemporalCoverage duration(String duration) {

@@ -1,6 +1,8 @@
 server:
   port: 8081
 spring:
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     stream:
       bindings:
@@ -29,7 +31,9 @@ spring:
     username: rabbitmq
     password: rabbitmq
   data:
-    cassandra:
-      port: 9042
-      keyspace-name: wacodisJobDefinitions
-      contactpoints: localhost
+    elasticsearch:
+      cluster:
+        name: elasticsearch
+      host: localhost
+      port: 9200
+      nativePort: 9300
