@@ -12,16 +12,16 @@ import org.springframework.messaging.SubscribableChannel;
  */
 public interface StreamChannels {
     
-    String JOBSTATUS_INPUT = "jobStatus";
-    String JOBCREATION_INPUT = "jobCreationConfirm";
+    String JOBSTATUS_INPUT = "job-status";
+    String JOBCREATION_INPUT = "job-creation-confirm";
  
     @Input(JOBSTATUS_INPUT)
     SubscribableChannel jobStatus();
  
-    @Output("jobCreation")
+    @Output("job-creation")
     MessageChannel jobCreation();
  
-    @Output("jobDeletion")
+    @Output("job-deletion")
     MessageChannel jobDeletion();
     
     @Input(JOBCREATION_INPUT)

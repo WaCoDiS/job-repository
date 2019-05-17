@@ -18,6 +18,8 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
@@ -35,6 +37,8 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 @EnableElasticsearchRepositories(basePackages = "de.wacodis.jobdefinition.persistence")
 public class ElasticsearchConfig {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ElasticsearchConfig.class);
+    
     @Value("${data.elasticsearch.cluster.name:elasticsearch}")
     private String clusterName;
 
@@ -54,6 +58,7 @@ public class ElasticsearchConfig {
                 .put("cluster.name", clusterName).build();
         TransportClient client = new PreBuiltTransportClient(elasticsearchSettings);
         client.addTransportAddress(new TransportAddress(InetAddress.getByName(host), nativePort));
+        LOG.info("Created elasticsearch client: {}, {}, {}", host, clusterName, nativePort);
         return client;
     }
 

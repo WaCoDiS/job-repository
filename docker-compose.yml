@@ -3,7 +3,7 @@ services:
   job-definition-api:
     build:
       context: .
-    image: registry.wacodis.demo.52north.org/job-definition-api:2019-01-29
+    image: registry.wacodis.demo.52north.org/job-definition-api:2019-03-21
     ports:
       - 8080:8080
     depends_on:

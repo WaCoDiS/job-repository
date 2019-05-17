@@ -4,22 +4,24 @@ spring:
   main:
     allow-bean-definition-overriding: true
   cloud:
+    config:
+      url: http://localhost:8888
     stream:
       bindings:
-        jobStatus:
-          destination: wacodis.jobs.status
+        job-status:
+          destination: wacodis.test.jobs.status
           binder: wacodis_rabbit
           group: jobStatusConsumers
-        jobCreation:
-          destination: wacodis.jobs.creation
+        job-creation:
+          destination: wacodis.test.jobs.new
           binder: wacodis_rabbit
           content-type: application/json
-        jobDeletion:
-          destination: wacodis.jobs.deletion
+        job-deletion:
+          destination: wacodis.test.jobs.deleted
           binder: wacodis_rabbit
           content-type: application/json
-        jobCreationConfirm:
-          destination: wacodis.jobs.creation
+        job-creation-confirm:
+          destination: wacodis.test.jobs.new
           binder: wacodis_rabbit
           group: jobCreationConsumers
       binders:

@@ -30,12 +30,13 @@ public class StreamBinder implements InitializingBean {
     @Async
     public void newJobCreated(WacodisJobDefinition theJob) {
         channels.jobCreation().send(MessageBuilder.withPayload(theJob).build());
-        LOG.info("Send new job: {}", theJob);
+        LOG.info("Published a new job: {}", theJob.getId());
+        LOG.debug("Job details: {}", theJob);
     }
     
     @StreamListener(StreamChannels.JOBCREATION_INPUT)
     public void onJobCreated(WacodisJobDefinition job) {
-        LOG.info("Got new job: {}", job);
+        LOG.info("Job publication confirmed: {}", job.getId());
     }
     
 }
