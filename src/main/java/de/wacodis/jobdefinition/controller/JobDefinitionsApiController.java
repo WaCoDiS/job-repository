@@ -7,6 +7,7 @@ import de.wacodis.jobdefinition.streams.StreamBinder;
 import io.swagger.annotations.ApiParam;
 import java.util.Optional;
 import java.util.UUID;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -47,6 +48,8 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
     @Override
     public ResponseEntity<WacodisJobDefinition> createWacodisJobDefinition(@RequestBody WacodisJobDefinition job) {
         job.setId(UUID.randomUUID());
+        job.setCreated(new DateTime());
+        job.setStatus(WacodisJobDefinition.StatusEnum.WAITING);
         repo.save(job);
         streams.newJobCreated(job);
         return new ResponseEntity<>(job, HttpStatus.CREATED);
@@ -63,7 +66,10 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
         Slice<WacodisJobDefinition> results = this.repo.findAll(currentPageable);
 
         if (results == null || results.getNumberOfElements() == 0) {
-            return new ResponseEntity<>(new PaginatedWacodisJobDefinitionResponse(), HttpStatus.OK);
+            PaginatedWacodisJobDefinitionResponse pr = new PaginatedWacodisJobDefinitionResponse();
+            pr.page(actualPage).size(actualSize).total(0);
+            
+            return new ResponseEntity<>(pr, HttpStatus.OK);
         }
         
         PaginatedWacodisJobDefinitionResponse resp = new PaginatedWacodisJobDefinitionResponse()

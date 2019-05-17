@@ -3,19 +3,8 @@ services:
   job-definition-api:
     build:
       context: .
-    image: registry.wacodis.demo.52north.org/job-definition-api:2019-03-21
+    image: registry.wacodis.demo.52north.org/job-definition-api:2019-05-17b
     ports:
       - 8080:8080
-    depends_on:
-      - cassandra
     environment: 
-      - spring.data.cassandra.contactpoints=cassandra
-      - spring.data.cassandra.port=9042
       - spring.rabbitmq.host=eum-dcsi.demo.52north.org
-#    entrypoint: /bin/bash
-#    command: ["-c", "/wait-for-it.sh -t 30 cassandra:9042 && java -Djava.security.egd=file:/dev/./urandom -jar /app.jar"]
-  cassandra:
-      image: cassandra:3.11
-      expose:
-          - "9042"
-
