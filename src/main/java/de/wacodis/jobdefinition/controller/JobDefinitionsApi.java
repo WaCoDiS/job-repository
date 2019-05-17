@@ -4,9 +4,9 @@
  */
 package de.wacodis.jobdefinition.controller;
 
-import de.wacodis.api.model.Error;
-import de.wacodis.api.model.PaginatedWacodisJobDefinitionResponse;
-import de.wacodis.api.model.WacodisJobDefinition;
+import de.wacodis.jobdefinition.model.Error;
+import de.wacodis.jobdefinition.model.PaginatedWacodisJobDefinitionResponse;
+import de.wacodis.jobdefinition.model.WacodisJobDefinition;
 import io.swagger.annotations.*;
 import java.util.Optional;
 import javax.validation.Valid;

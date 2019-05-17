@@ -1,7 +1,7 @@
 package de.wacodis.jobdefinition.controller;
 
-import de.wacodis.api.model.PaginatedWacodisJobDefinitionResponse;
-import de.wacodis.api.model.WacodisJobDefinition;
+import de.wacodis.jobdefinition.model.PaginatedWacodisJobDefinitionResponse;
+import de.wacodis.jobdefinition.model.WacodisJobDefinition;
 import de.wacodis.jobdefinition.persistence.WacodisJobDefinitionRepository;
 import de.wacodis.jobdefinition.streams.StreamBinder;
 import io.swagger.annotations.ApiParam;

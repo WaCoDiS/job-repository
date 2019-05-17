@@ -1,8 +1,8 @@
 package de.wacodis.jobdefinition.persistence;
 
-import de.wacodis.api.model.AbstractSubsetDefinition;
-import de.wacodis.api.model.SensorWebSubsetDefinition;
-import de.wacodis.api.model.WacodisJobDefinition;
+import de.wacodis.jobdefinition.model.AbstractSubsetDefinition;
+import de.wacodis.jobdefinition.model.SensorWebSubsetDefinition;
+import de.wacodis.jobdefinition.model.WacodisJobDefinition;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;

@@ -1,25 +1,22 @@
-package de.wacodis.api.model;
+package de.wacodis.jobdefinition.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.wacodis.api.model.AbstractDataEnvelope;
-import de.wacodis.api.model.AbstractDataEnvelopeAreaOfInterest;
-import de.wacodis.api.model.AbstractDataEnvelopeTimeFrame;
+import de.wacodis.jobdefinition.model.AbstractSubsetDefinition;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.joda.time.DateTime;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * SensorWebDataEnvelope
+ * SensorWebSubsetDefinition
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T10:38:12.630+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T11:02:33.293+02:00[Europe/Berlin]")
 
-public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Serializable {
+public class SensorWebSubsetDefinition extends AbstractSubsetDefinition implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("serviceUrl")
@@ -37,7 +34,7 @@ public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Seria
   @JsonProperty("procedure")
   private String procedure = null;
 
-  public SensorWebDataEnvelope serviceUrl(String serviceUrl) {
+  public SensorWebSubsetDefinition serviceUrl(String serviceUrl) {
     this.serviceUrl = serviceUrl;
     return this;
   }
@@ -58,7 +55,7 @@ public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Seria
     this.serviceUrl = serviceUrl;
   }
 
-  public SensorWebDataEnvelope offering(String offering) {
+  public SensorWebSubsetDefinition offering(String offering) {
     this.offering = offering;
     return this;
   }
@@ -79,7 +76,7 @@ public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Seria
     this.offering = offering;
   }
 
-  public SensorWebDataEnvelope featureOfInterest(String featureOfInterest) {
+  public SensorWebSubsetDefinition featureOfInterest(String featureOfInterest) {
     this.featureOfInterest = featureOfInterest;
     return this;
   }
@@ -100,7 +97,7 @@ public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Seria
     this.featureOfInterest = featureOfInterest;
   }
 
-  public SensorWebDataEnvelope observedProperty(String observedProperty) {
+  public SensorWebSubsetDefinition observedProperty(String observedProperty) {
     this.observedProperty = observedProperty;
     return this;
   }
@@ -121,7 +118,7 @@ public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Seria
     this.observedProperty = observedProperty;
   }
 
-  public SensorWebDataEnvelope procedure(String procedure) {
+  public SensorWebSubsetDefinition procedure(String procedure) {
     this.procedure = procedure;
     return this;
   }
@@ -151,12 +148,12 @@ public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Seria
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SensorWebDataEnvelope sensorWebDataEnvelope = (SensorWebDataEnvelope) o;
-    return Objects.equals(this.serviceUrl, sensorWebDataEnvelope.serviceUrl) &&
-        Objects.equals(this.offering, sensorWebDataEnvelope.offering) &&
-        Objects.equals(this.featureOfInterest, sensorWebDataEnvelope.featureOfInterest) &&
-        Objects.equals(this.observedProperty, sensorWebDataEnvelope.observedProperty) &&
-        Objects.equals(this.procedure, sensorWebDataEnvelope.procedure) &&
+    SensorWebSubsetDefinition sensorWebSubsetDefinition = (SensorWebSubsetDefinition) o;
+    return Objects.equals(this.serviceUrl, sensorWebSubsetDefinition.serviceUrl) &&
+        Objects.equals(this.offering, sensorWebSubsetDefinition.offering) &&
+        Objects.equals(this.featureOfInterest, sensorWebSubsetDefinition.featureOfInterest) &&
+        Objects.equals(this.observedProperty, sensorWebSubsetDefinition.observedProperty) &&
+        Objects.equals(this.procedure, sensorWebSubsetDefinition.procedure) &&
         super.equals(o);
   }
 
@@ -168,7 +165,7 @@ public class SensorWebDataEnvelope extends AbstractDataEnvelope implements Seria
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SensorWebDataEnvelope {\n");
+    sb.append("class SensorWebSubsetDefinition {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    serviceUrl: ").append(toIndentedString(serviceUrl)).append("\n");
     sb.append("    offering: ").append(toIndentedString(offering)).append("\n");

@@ -1,12 +1,12 @@
-package de.wacodis.api.model;
+package de.wacodis.jobdefinition.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import de.wacodis.api.model.AbstractDataEnvelope;
-import de.wacodis.api.model.AbstractDataEnvelopeAreaOfInterest;
-import de.wacodis.api.model.AbstractDataEnvelopeTimeFrame;
+import de.wacodis.jobdefinition.model.AbstractDataEnvelope;
+import de.wacodis.jobdefinition.model.AbstractDataEnvelopeAreaOfInterest;
+import de.wacodis.jobdefinition.model.AbstractDataEnvelopeTimeFrame;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.joda.time.DateTime;
@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 /**
  * DwdDataEnvelope
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T10:38:12.630+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T11:02:33.293+02:00[Europe/Berlin]")
 
 public class DwdDataEnvelope extends AbstractDataEnvelope implements Serializable {
   private static final long serialVersionUID = 1L;

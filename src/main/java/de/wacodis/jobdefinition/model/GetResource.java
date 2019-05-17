@@ -1,7 +1,7 @@
-package de.wacodis.api.model;
+package de.wacodis.jobdefinition.model;
 
 import java.util.Objects;
-import de.wacodis.api.model.AbstractResource;
+import de.wacodis.jobdefinition.model.AbstractResource;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -9,7 +9,7 @@ import javax.validation.constraints.*;
 /**
  * GetResource
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T10:38:12.630+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T11:02:33.293+02:00[Europe/Berlin]")
 
 public class GetResource extends AbstractResource implements Serializable {
   private static final long serialVersionUID = 1L;

@@ -5,7 +5,7 @@
  */
 package de.wacodis.jobdefinition.persistence;
 
-import de.wacodis.api.model.WacodisJobDefinition;
+import de.wacodis.jobdefinition.model.WacodisJobDefinition;
 import java.util.UUID;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 
