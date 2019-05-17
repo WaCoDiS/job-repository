@@ -3,53 +3,68 @@ package de.wacodis.api.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import de.wacodis.api.model.PaginatedResponse;
-import de.wacodis.api.model.WacodisJobDefinition;
+import com.fasterxml.jackson.annotation.JsonValue;
+import de.wacodis.api.model.AbstractResource;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * PaginatedWacodisJobDefinitionResponse
+ * PostResource
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T10:38:12.630+02:00[Europe/Berlin]")
 
-public class PaginatedWacodisJobDefinitionResponse extends PaginatedResponse implements Serializable {
+public class PostResource extends AbstractResource implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  @JsonProperty("data")
-  @Valid
-  private List<WacodisJobDefinition> data = new ArrayList<WacodisJobDefinition>();
+  @JsonProperty("body")
+  private String body = null;
 
-  public PaginatedWacodisJobDefinitionResponse data(List<WacodisJobDefinition> data) {
-    this.data = data;
-    return this;
-  }
+  @JsonProperty("contentType")
+  private String contentType = null;
 
-  public PaginatedWacodisJobDefinitionResponse addDataItem(WacodisJobDefinition dataItem) {
-    this.data.add(dataItem);
+  public PostResource body(String body) {
+    this.body = body;
     return this;
   }
 
   /**
-   * Get data
-   * @return data
+   * Get body
+   * @return body
   **/
   @ApiModelProperty(required = true, value = "")
   @NotNull
 
-  @Valid
 
-  public List<WacodisJobDefinition> getData() {
-    return data;
+  public String getBody() {
+    return body;
   }
 
-  public void setData(List<WacodisJobDefinition> data) {
-    this.data = data;
+  public void setBody(String body) {
+    this.body = body;
+  }
+
+  public PostResource contentType(String contentType) {
+    this.contentType = contentType;
+    return this;
+  }
+
+  /**
+   * Get contentType
+   * @return contentType
+  **/
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+
+  public String getContentType() {
+    return contentType;
+  }
+
+  public void setContentType(String contentType) {
+    this.contentType = contentType;
   }
 
 
@@ -61,22 +76,24 @@ public class PaginatedWacodisJobDefinitionResponse extends PaginatedResponse imp
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PaginatedWacodisJobDefinitionResponse paginatedWacodisJobDefinitionResponse = (PaginatedWacodisJobDefinitionResponse) o;
-    return Objects.equals(this.data, paginatedWacodisJobDefinitionResponse.data) &&
+    PostResource postResource = (PostResource) o;
+    return Objects.equals(this.body, postResource.body) &&
+        Objects.equals(this.contentType, postResource.contentType) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, super.hashCode());
+    return Objects.hash(body, contentType, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PaginatedWacodisJobDefinitionResponse {\n");
+    sb.append("class PostResource {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    contentType: ").append(toIndentedString(contentType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

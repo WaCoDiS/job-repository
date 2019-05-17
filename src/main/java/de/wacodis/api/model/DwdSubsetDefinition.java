@@ -12,59 +12,59 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * CatalogueSubsetDefinition
+ * DwdSubsetDefinition
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T10:38:12.630+02:00[Europe/Berlin]")
 
-public class CatalogueSubsetDefinition extends AbstractSubsetDefinition implements Serializable {
+public class DwdSubsetDefinition extends AbstractSubsetDefinition implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  @JsonProperty("datasetIdentifier")
-  private String datasetIdentifier = null;
-
   @JsonProperty("serviceUrl")
-  private Object serviceUrl = null;
+  private String serviceUrl = null;
 
-  public CatalogueSubsetDefinition datasetIdentifier(String datasetIdentifier) {
-    this.datasetIdentifier = datasetIdentifier;
-    return this;
-  }
+  @JsonProperty("layerName")
+  private String layerName = null;
 
-  /**
-   * the id of the dataset within the catalogue 
-   * @return datasetIdentifier
-  **/
-  @ApiModelProperty(required = true, value = "the id of the dataset within the catalogue ")
-  @NotNull
-
-
-  public String getDatasetIdentifier() {
-    return datasetIdentifier;
-  }
-
-  public void setDatasetIdentifier(String datasetIdentifier) {
-    this.datasetIdentifier = datasetIdentifier;
-  }
-
-  public CatalogueSubsetDefinition serviceUrl(Object serviceUrl) {
+  public DwdSubsetDefinition serviceUrl(String serviceUrl) {
     this.serviceUrl = serviceUrl;
     return this;
   }
 
   /**
-   * the base URL of the catalogue 
+   * the base URL of the service 
    * @return serviceUrl
   **/
-  @ApiModelProperty(required = true, value = "the base URL of the catalogue ")
+  @ApiModelProperty(required = true, value = "the base URL of the service ")
   @NotNull
 
 
-  public Object getServiceUrl() {
+  public String getServiceUrl() {
     return serviceUrl;
   }
 
-  public void setServiceUrl(Object serviceUrl) {
+  public void setServiceUrl(String serviceUrl) {
     this.serviceUrl = serviceUrl;
+  }
+
+  public DwdSubsetDefinition layerName(String layerName) {
+    this.layerName = layerName;
+    return this;
+  }
+
+  /**
+   * the name of the queried layer
+   * @return layerName
+  **/
+  @ApiModelProperty(required = true, value = "the name of the queried layer")
+  @NotNull
+
+
+  public String getLayerName() {
+    return layerName;
+  }
+
+  public void setLayerName(String layerName) {
+    this.layerName = layerName;
   }
 
 
@@ -76,24 +76,24 @@ public class CatalogueSubsetDefinition extends AbstractSubsetDefinition implemen
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CatalogueSubsetDefinition catalogueSubsetDefinition = (CatalogueSubsetDefinition) o;
-    return Objects.equals(this.datasetIdentifier, catalogueSubsetDefinition.datasetIdentifier) &&
-        Objects.equals(this.serviceUrl, catalogueSubsetDefinition.serviceUrl) &&
+    DwdSubsetDefinition dwdSubsetDefinition = (DwdSubsetDefinition) o;
+    return Objects.equals(this.serviceUrl, dwdSubsetDefinition.serviceUrl) &&
+        Objects.equals(this.layerName, dwdSubsetDefinition.layerName) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(datasetIdentifier, serviceUrl, super.hashCode());
+    return Objects.hash(serviceUrl, layerName, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CatalogueSubsetDefinition {\n");
+    sb.append("class DwdSubsetDefinition {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    datasetIdentifier: ").append(toIndentedString(datasetIdentifier)).append("\n");
     sb.append("    serviceUrl: ").append(toIndentedString(serviceUrl)).append("\n");
+    sb.append("    layerName: ").append(toIndentedString(layerName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
