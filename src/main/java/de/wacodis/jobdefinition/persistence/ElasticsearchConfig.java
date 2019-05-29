@@ -39,16 +39,16 @@ public class ElasticsearchConfig {
 
     private static final Logger LOG = LoggerFactory.getLogger(ElasticsearchConfig.class);
     
-    @Value("${data.elasticsearch.cluster.name:elasticsearch}")
+    @Value("${spring.data.elasticsearch.cluster.name:elasticsearch}")
     private String clusterName;
 
-    @Value("${data.elasticsearch.host:127.0.0.1}")
+    @Value("${spring.data.elasticsearch.host:127.0.0.1}")
     private String host;
 
-    @Value("${data.elasticsearch.port:9200}")
+    @Value("${spring.data.elasticsearch.port:9200}")
     private int port;
 
-    @Value("${data.elasticsearch.nativePort:9300}")
+    @Value("${spring.data.elasticsearch.nativePort:9300}")
     private int nativePort;
 
     @Bean
