@@ -24,7 +24,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 /**
  * WacodisJobDefinition
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T11:02:33.293+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-06-26T09:18:40.710+02:00[Europe/Berlin]")
 
 @Document(indexName = "wacodis", type = "job")
 public class WacodisJobDefinition  implements Serializable {
@@ -98,6 +98,9 @@ public class WacodisJobDefinition  implements Serializable {
 
   @JsonProperty("processingTool")
   private String processingTool = null;
+
+  @JsonProperty("productCollection")
+  private String productCollection = null;
 
   @JsonProperty("inputs")
   @Valid
@@ -332,6 +335,27 @@ public class WacodisJobDefinition  implements Serializable {
     this.processingTool = processingTool;
   }
 
+  public WacodisJobDefinition productCollection(String productCollection) {
+    this.productCollection = productCollection;
+    return this;
+  }
+
+  /**
+   * collection to which the output data should be added when it becomes available 
+   * @return productCollection
+  **/
+  @ApiModelProperty(required = true, value = "collection to which the output data should be added when it becomes available ")
+  @NotNull
+
+
+  public String getProductCollection() {
+    return productCollection;
+  }
+
+  public void setProductCollection(String productCollection) {
+    this.productCollection = productCollection;
+  }
+
   public WacodisJobDefinition inputs(List<AbstractSubsetDefinition> inputs) {
     this.inputs = inputs;
     return this;
@@ -380,12 +404,13 @@ public class WacodisJobDefinition  implements Serializable {
         Objects.equals(this.temporalCoverage, wacodisJobDefinition.temporalCoverage) &&
         Objects.equals(this.areaOfInterest, wacodisJobDefinition.areaOfInterest) &&
         Objects.equals(this.processingTool, wacodisJobDefinition.processingTool) &&
+        Objects.equals(this.productCollection, wacodisJobDefinition.productCollection) &&
         Objects.equals(this.inputs, wacodisJobDefinition.inputs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, useCase, created, lastFinishedExecution, status, execution, temporalCoverage, areaOfInterest, processingTool, inputs);
+    return Objects.hash(id, name, description, useCase, created, lastFinishedExecution, status, execution, temporalCoverage, areaOfInterest, processingTool, productCollection, inputs);
   }
 
   @Override
@@ -404,6 +429,7 @@ public class WacodisJobDefinition  implements Serializable {
     sb.append("    temporalCoverage: ").append(toIndentedString(temporalCoverage)).append("\n");
     sb.append("    areaOfInterest: ").append(toIndentedString(areaOfInterest)).append("\n");
     sb.append("    processingTool: ").append(toIndentedString(processingTool)).append("\n");
+    sb.append("    productCollection: ").append(toIndentedString(productCollection)).append("\n");
     sb.append("    inputs: ").append(toIndentedString(inputs)).append("\n");
     sb.append("}");
     return sb.toString();

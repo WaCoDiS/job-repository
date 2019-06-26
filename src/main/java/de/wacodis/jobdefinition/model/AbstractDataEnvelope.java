@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
 /**
  * AbstractDataEnvelope
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T11:02:33.293+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-06-26T09:18:40.710+02:00[Europe/Berlin]")
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "sourceType", visible = true)
 @JsonSubTypes({
@@ -26,6 +26,7 @@ import javax.validation.constraints.*;
   @JsonSubTypes.Type(value = CopernicusDataEnvelope.class, name = "CopernicusDataEnvelope"),
   @JsonSubTypes.Type(value = GdiDeDataEnvelope.class, name = "GdiDeDataEnvelope"),
   @JsonSubTypes.Type(value = DwdDataEnvelope.class, name = "DwdDataEnvelope"),
+  @JsonSubTypes.Type(value = WacodisProductDataEnvelope.class, name = "WacodisProductDataEnvelope"),
 })
 
 public class AbstractDataEnvelope  implements Serializable {
@@ -41,7 +42,9 @@ public class AbstractDataEnvelope  implements Serializable {
     
     GDIDEDATAENVELOPE("GdiDeDataEnvelope"),
     
-    DWDDATAENVELOPE("DwdDataEnvelope");
+    DWDDATAENVELOPE("DwdDataEnvelope"),
+    
+    WACODISPRODUCTDATAENVELOPE("WacodisProductDataEnvelope");
 
     private String value;
 

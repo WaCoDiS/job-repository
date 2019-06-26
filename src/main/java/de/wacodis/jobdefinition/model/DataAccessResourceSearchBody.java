@@ -17,7 +17,7 @@ import javax.validation.constraints.*;
 /**
  * DataAccessResourceSearchBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-05-17T11:02:33.293+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-06-26T09:18:40.710+02:00[Europe/Berlin]")
 
 public class DataAccessResourceSearchBody  implements Serializable {
   private static final long serialVersionUID = 1L;
