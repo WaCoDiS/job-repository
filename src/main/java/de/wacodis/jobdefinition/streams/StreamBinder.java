@@ -34,6 +34,12 @@ public class StreamBinder implements InitializingBean {
         LOG.debug("Job details: {}", theJob);
     }
     
+    @Async
+    public void jobDeleted(WacodisJobDefinition theJob) {
+        channels.jobDeletion().send(MessageBuilder.withPayload(theJob).build());
+        LOG.info("Published job deletion: {}", theJob.getId());
+    }
+    
     @StreamListener(StreamChannels.JOBCREATION_INPUT)
     public void onJobCreated(WacodisJobDefinition job) {
         LOG.info("Job publication confirmed: {}", job.getId());

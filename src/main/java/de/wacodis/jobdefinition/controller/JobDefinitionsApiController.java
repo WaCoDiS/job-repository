@@ -102,6 +102,7 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
         Optional<WacodisJobDefinition> jobOpt = this.repo.findById(UUID.fromString(id));
         if (jobOpt.isPresent()) {
             this.repo.delete(jobOpt.get());
+            streams.jobDeleted(jobOpt.get());
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
