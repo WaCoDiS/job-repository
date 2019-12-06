@@ -2,14 +2,16 @@ package de.wacodis.jobdefinition.model;
 
 import java.util.Objects;
 import de.wacodis.jobdefinition.model.AbstractResource;
+import io.swagger.annotations.ApiModel;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * GetResource
+ * resource that can be fetched with a HTTP GET request
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-06-26T09:18:40.710+02:00[Europe/Berlin]")
+@ApiModel(description = "resource that can be fetched with a HTTP GET request")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-06T15:42:43.452+01:00[Europe/Berlin]")
 
 public class GetResource extends AbstractResource implements Serializable {
   private static final long serialVersionUID = 1L;

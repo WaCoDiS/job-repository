@@ -12,19 +12,20 @@ import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
-// after model generation: include = JsonTypeInfo.As.EXISTING_PROPERTY must be set on the "sourceType"
-
 /**
- * AbstractSubsetDefinition
+ * abstract type for job input subsets
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-06-26T09:18:40.710+02:00[Europe/Berlin]")
+@ApiModel(description = "abstract type for job input subsets")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-06T15:42:43.452+01:00[Europe/Berlin]")
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "sourceType", visible = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "sourceType", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = SensorWebSubsetDefinition.class, name = "SensorWebSubsetDefinition"),
   @JsonSubTypes.Type(value = CopernicusSubsetDefinition.class, name = "CopernicusSubsetDefinition"),
   @JsonSubTypes.Type(value = CatalogueSubsetDefinition.class, name = "CatalogueSubsetDefinition"),
   @JsonSubTypes.Type(value = DwdSubsetDefinition.class, name = "DwdSubsetDefinition"),
+  @JsonSubTypes.Type(value = WacodisProductSubsetDefinition.class, name = "WacodisProductSubsetDefinition"),
+  @JsonSubTypes.Type(value = StaticSubsetDefinition.class, name = "StaticSubsetDefinition"),
 })
 
 public class AbstractSubsetDefinition  implements Serializable {
@@ -40,7 +41,11 @@ public class AbstractSubsetDefinition  implements Serializable {
     
     CATALOGUESUBSETDEFINITION("CatalogueSubsetDefinition"),
     
-    DWDSUBSETDEFINITION("DwdSubsetDefinition");
+    DWDSUBSETDEFINITION("DwdSubsetDefinition"),
+    
+    STATICSUBSETDEFINITION("StaticSubsetDefinition"),
+    
+    WACODISPRODUCTSUBSETDEFINITION("WacodisProductSubsetDefinition");
 
     private String value;
 

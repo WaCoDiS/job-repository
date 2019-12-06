@@ -17,23 +17,17 @@ import org.joda.time.DateTime;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
-import org.joda.time.DateTime;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
- * WacodisJobDefinition
+ * contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-06-26T09:18:40.710+02:00[Europe/Berlin]")
+@ApiModel(description = "contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-06T15:42:43.452+01:00[Europe/Berlin]")
 
-@Document(indexName = "wacodis", type = "job")
 public class WacodisJobDefinition  implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public static final String TABLE_NAME = "jobDefinitions";
-    
   @JsonProperty("id")
-  @Id
   private UUID id = null;
 
   @JsonProperty("name")
@@ -174,10 +168,10 @@ public class WacodisJobDefinition  implements Serializable {
   }
 
   /**
-   * A generic use case reference. This can be used to refer to the use cases identified during the initial phase of WaCoDiS 
+   * a generic use case reference. This can be used to refer to the use cases identified during the initial phase of WaCoDiS 
    * @return useCase
   **/
-  @ApiModelProperty(value = "A generic use case reference. This can be used to refer to the use cases identified during the initial phase of WaCoDiS ")
+  @ApiModelProperty(value = "a generic use case reference. This can be used to refer to the use cases identified during the initial phase of WaCoDiS ")
 
 
   public String getUseCase() {
