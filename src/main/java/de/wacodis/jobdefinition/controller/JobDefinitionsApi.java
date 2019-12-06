@@ -24,7 +24,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2019-12-06T15:31:43.022+01:00[Europe/Berlin]")
+        date = "2019-12-06T16:33:32.913+01:00[Europe/Berlin]")
 @Validated
 @Api(value = "jobDefinitions", description = "the jobDefinitions API")
 public interface JobDefinitionsApi {
@@ -198,11 +198,16 @@ public interface JobDefinitionsApi {
     @RequestMapping(
             value = "/jobDefinitions/{id}",
             produces = {"application/json"},
+            consumes = {"application/json"},
             method = RequestMethod.PATCH)
     default ResponseEntity<WacodisJobDefinition> updateWacodisJobDefinition(
             @ApiParam(value = "ID of WacodisJobDefinition to be updated ", required = true)
                     @PathVariable("id")
-                    String id) {
+                    String id,
+            @ApiParam(value = "WacodisJobDefinition to add to the repository ", required = true)
+                    @Valid
+                    @RequestBody
+                    WacodisJobDefinition wacodisJobDefinition) {
         getRequest()
                 .ifPresent(
                         request -> {
