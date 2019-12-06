@@ -29,10 +29,10 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
 
     @Autowired
     private StreamBinder streams;
-    
+
     @Autowired
     private WacodisJobDefinitionRepository repo;
-    
+
     private final NativeWebRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
@@ -61,44 +61,42 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
             @RequestParam(value = "size", required = false) Integer size) {
         Integer actualPage = Optional.ofNullable(page).orElse(0);
         Integer actualSize = Optional.ofNullable(size).orElse(10);
-        
+
         PageRequest currentPageable = PageRequest.of(actualPage, actualSize);
         Slice<WacodisJobDefinition> results = this.repo.findAll(currentPageable);
 
         if (results == null || results.getNumberOfElements() == 0) {
             PaginatedWacodisJobDefinitionResponse pr = new PaginatedWacodisJobDefinitionResponse();
             pr.page(actualPage).size(actualSize).total(0);
-            
+
             return new ResponseEntity<>(pr, HttpStatus.OK);
         }
-        
+
         PaginatedWacodisJobDefinitionResponse resp = new PaginatedWacodisJobDefinitionResponse()
                 .data(results.getContent());
         resp.page(actualPage)
                 .size(actualSize)
                 .total((int) this.repo.count());
-        
+
         return new ResponseEntity<>(resp, HttpStatus.OK);
     }
-    
+
     @Override
     public ResponseEntity<WacodisJobDefinition> retrieveWacodisJobDefinitionById(
             @ApiParam(value = "ID of WacodisJobDefinition to retrieve ", required = true)
-                    @PathVariable("id")
-                    String id) {
+            @PathVariable("id") String id) {
         Optional<WacodisJobDefinition> jobOpt = this.repo.findById(UUID.fromString(id));
         if (jobOpt.isPresent()) {
             return new ResponseEntity<>(jobOpt.get(), HttpStatus.OK);
         }
-        
+
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-    
+
     @Override
     public ResponseEntity<Void> deleteWacodisJobDefinition(
             @ApiParam(value = "ID of WacodisJobDefinition to delete ", required = true)
-                    @PathVariable("id")
-                    String id) {
+            @PathVariable("id") String id) {
         Optional<WacodisJobDefinition> jobOpt = this.repo.findById(UUID.fromString(id));
         if (jobOpt.isPresent()) {
             this.repo.delete(jobOpt.get());
@@ -107,7 +105,19 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        
+
+    }
+
+    @Override
+    public ResponseEntity<WacodisJobDefinition> updateWacodisJobDefinition(
+            @ApiParam(value = "ID of WacodisJobDefinition to be updated ", required = true)
+            @PathVariable("id") String id) {
+
+        {
+
+            return JobDefinitionsApi.super.updateWacodisJobDefinition(id); //To change body of generated methods, choose Tools | Templates.
+        }
+
     }
     
 }
