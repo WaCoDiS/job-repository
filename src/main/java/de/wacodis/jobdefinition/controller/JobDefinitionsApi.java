@@ -24,7 +24,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2019-12-06T16:33:32.913+01:00[Europe/Berlin]")
+        date = "2019-12-06T16:57:56.752+01:00[Europe/Berlin]")
 @Validated
 @Api(value = "jobDefinitions", description = "the jobDefinitions API")
 public interface JobDefinitionsApi {
@@ -180,8 +180,9 @@ public interface JobDefinitionsApi {
 
     @ApiOperation(
             value = "",
-            nickname = "updateWacodisJobDefinition",
-            notes = "update a single WacodisJobDefinition based on the ID supplied ",
+            nickname = "updateJobStatus",
+            notes =
+                    "update job status, only attributes status and lastFinishedExecution are changed ",
             response = WacodisJobDefinition.class,
             tags = {})
     @ApiResponses(
@@ -196,15 +197,15 @@ public interface JobDefinitionsApi {
                 @ApiResponse(code = 500, message = "unexpected error ", response = Error.class)
             })
     @RequestMapping(
-            value = "/jobDefinitions/{id}",
+            value = "/jobDefinitions/jobstatus/{id}",
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.PATCH)
-    default ResponseEntity<WacodisJobDefinition> updateWacodisJobDefinition(
-            @ApiParam(value = "ID of WacodisJobDefinition to be updated ", required = true)
-                    @PathVariable("id")
-                    String id,
-            @ApiParam(value = "WacodisJobDefinition to add to the repository ", required = true)
+    default ResponseEntity<WacodisJobDefinition> updateJobStatus(
+            @ApiParam(
+                            value =
+                                    "WacodisJobDefinition with new job status, only attributes status and lastFinishedExecution are changed ",
+                            required = true)
                     @Valid
                     @RequestBody
                     WacodisJobDefinition wacodisJobDefinition) {
