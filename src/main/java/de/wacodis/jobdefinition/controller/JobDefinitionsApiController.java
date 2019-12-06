@@ -7,6 +7,7 @@ import de.wacodis.jobdefinition.streams.StreamBinder;
 import io.swagger.annotations.ApiParam;
 import java.util.Optional;
 import java.util.UUID;
+import javax.validation.Valid;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -109,15 +110,34 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
     }
 
     @Override
-    public ResponseEntity<WacodisJobDefinition> updateWacodisJobDefinition(
-            @ApiParam(value = "ID of WacodisJobDefinition to be updated ", required = true)
-            @PathVariable("id") String id) {
+    public ResponseEntity<WacodisJobDefinition> updateJobStatus(
+            @ApiParam(value = "WacodisJobDefinition to add to the repository ", required = true)
+            @Valid
+            @RequestBody WacodisJobDefinition wacodisJobDefinition) {
+        //first retrieve currently stored job to update status
+        ResponseEntity<WacodisJobDefinition> getByIdResponse = retrieveWacodisJobDefinitionById(wacodisJobDefinition.getId().toString());
+        HttpStatus responseStatus = getByIdResponse.getStatusCode();
 
-        {
-
-            return JobDefinitionsApi.super.updateWacodisJobDefinition(id); //To change body of generated methods, choose Tools | Templates.
+        if (responseStatus.equals(HttpStatus.OK)) {
+            WacodisJobDefinition currentJob = getByIdResponse.getBody();
+            //merge status
+            mergeStatusAttributes(wacodisJobDefinition, currentJob);
+            WacodisJobDefinition updatedJobDefiniton = repo.save(wacodisJobDefinition);
+            return new ResponseEntity<>(updatedJobDefiniton, HttpStatus.OK); //return updated job definition
+        } else {
+            if (responseStatus.equals(HttpStatus.NOT_FOUND)) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            } else {
+                return new ResponseEntity<>(HttpStatus.valueOf(500));
+            }
         }
-
     }
-    
+
+    private void mergeStatusAttributes(WacodisJobDefinition jobWithNewStatus, WacodisJobDefinition currentJob) {
+        currentJob.setStatus(jobWithNewStatus.getStatus());
+        
+        if(jobWithNewStatus.getLastFinishedExecution() != null){
+            currentJob.setLastFinishedExecution(jobWithNewStatus.getLastFinishedExecution());
+        }
+    }
 }
