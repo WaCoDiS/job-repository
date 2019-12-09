@@ -201,7 +201,7 @@ public interface JobDefinitionsApi {
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.PATCH)
-    default ResponseEntity<WacodisJobDefinition> updateJobStatus(
+    default ResponseEntity<?> updateJobStatus(
             @ApiParam(
                             value =
                                     "WacodisJobDefinition with new job status, only attributes status and lastFinishedExecution are changed ",

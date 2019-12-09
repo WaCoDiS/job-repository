@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 import javax.validation.Valid;
 import org.joda.time.DateTime;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -27,6 +28,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 @Controller
 @RequestMapping("${openapi.waCoDiSJobDefinition.base-path:}")
 public class JobDefinitionsApiController implements JobDefinitionsApi {
+    
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(JobDefinitionsApiController.class);
 
     @Autowired
     private StreamBinder streams;
@@ -110,25 +113,33 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
     }
 
     @Override
-    public ResponseEntity<WacodisJobDefinition> updateJobStatus(
+    public ResponseEntity<?> updateJobStatus(
             @ApiParam(value = "WacodisJobDefinition to add to the repository ", required = true)
             @Valid
             @RequestBody WacodisJobDefinition wacodisJobDefinition) {
+        LOGGER.info("updade status for WacodisJobDefinition with id {}", wacodisJobDefinition.getId().toString());
         //first retrieve currently stored job to update status
         ResponseEntity<WacodisJobDefinition> getByIdResponse = retrieveWacodisJobDefinitionById(wacodisJobDefinition.getId().toString());
         HttpStatus responseStatus = getByIdResponse.getStatusCode();
 
         if (responseStatus.equals(HttpStatus.OK)) {
+            LOGGER.debug("retrieved current data for WacodisJobDefinition with id {} from backend", wacodisJobDefinition.getId().toString());
             WacodisJobDefinition currentJob = getByIdResponse.getBody();
             //merge status
             mergeStatusAttributes(wacodisJobDefinition, currentJob);
             WacodisJobDefinition updatedJobDefiniton = repo.save(wacodisJobDefinition);
+            LOGGER.info("successfully updated status for WacodisJobDefintion with id {} and wrote updated data to backend", wacodisJobDefinition.getId().toString());
             return new ResponseEntity<>(updatedJobDefiniton, HttpStatus.OK); //return updated job definition
         } else {
             if (responseStatus.equals(HttpStatus.NOT_FOUND)) {
+                LOGGER.warn("unable to update status for WacodisJobDefintion with id {}, could not found WacodisJobDefintion with id {}", wacodisJobDefinition.getId().toString(), wacodisJobDefinition.getId().toString());
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } else {
-                return new ResponseEntity<>(HttpStatus.valueOf(500));
+                LOGGER.error("unable to retrieve WacodisJobDefinition with id {} from backend, request responded with status code {} and body {}.", wacodisJobDefinition.getId().toString(), responseStatus.toString(), getByIdResponse.getBody());
+                de.wacodis.jobdefinition.model.Error error = new de.wacodis.jobdefinition.model.Error();
+                error.setCode(500);
+                error.setMessage("unexpected error occured while retrieving current data for job " + wacodisJobDefinition.getId().toString());
+                return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
     }
