@@ -7,6 +7,7 @@ package de.wacodis.jobdefinition.controller;
 import de.wacodis.jobdefinition.model.Error;
 import de.wacodis.jobdefinition.model.PaginatedWacodisJobDefinitionResponse;
 import de.wacodis.jobdefinition.model.WacodisJobDefinition;
+import de.wacodis.jobdefinition.model.WacodisJobStatusUpdate;
 import io.swagger.annotations.*;
 import java.util.Optional;
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2019-12-10T11:26:33.960+01:00[Europe/Berlin]")
+        date = "2019-12-10T15:07:06.004+01:00[Europe/Berlin]")
 @Validated
 @Api(value = "jobDefinitions", description = "the jobDefinitions API")
 public interface JobDefinitionsApi {
@@ -67,7 +68,7 @@ public interface JobDefinitionsApi {
                                     ApiUtil.setExampleResponse(
                                             request,
                                             "application/json",
-                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"productCollection\" : \"productCollection\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"description\" : \"description\",  \"lastFinishedExecution\" : \"2000-01-23T04:56:07.000+00:00\",  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"name\" : \"name\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",  \"status\" : \"waiting\"}");
+                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"productCollection\" : \"productCollection\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"description\" : \"description\",  \"lastFinishedExecution\" : \"2000-01-23T04:56:07.000+00:00\",  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"name\" : \"name\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
                                     break;
                                 }
                             }
@@ -128,7 +129,7 @@ public interface JobDefinitionsApi {
                                     ApiUtil.setExampleResponse(
                                             request,
                                             "application/json",
-                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"productCollection\" : \"productCollection\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"description\" : \"description\",  \"lastFinishedExecution\" : \"2000-01-23T04:56:07.000+00:00\",  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"name\" : \"name\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",  \"status\" : \"waiting\"}");
+                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"productCollection\" : \"productCollection\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"description\" : \"description\",  \"lastFinishedExecution\" : \"2000-01-23T04:56:07.000+00:00\",  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"name\" : \"name\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
                                     break;
                                 }
                             }
@@ -208,7 +209,7 @@ public interface JobDefinitionsApi {
                             required = true)
                     @Valid
                     @RequestBody
-                    WacodisJobDefinition wacodisJobDefinition) {
+                    WacodisJobStatusUpdate wacodisJobStatusUpdate) {
         getRequest()
                 .ifPresent(
                         request -> {
@@ -219,7 +220,7 @@ public interface JobDefinitionsApi {
                                     ApiUtil.setExampleResponse(
                                             request,
                                             "application/json",
-                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"productCollection\" : \"productCollection\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"description\" : \"description\",  \"lastFinishedExecution\" : \"2000-01-23T04:56:07.000+00:00\",  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"name\" : \"name\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\",  \"status\" : \"waiting\"}");
+                                            "{  \"execution\" : {    \"pattern\" : \"pattern\",    \"event\" : \"{}\"  },  \"productCollection\" : \"productCollection\",  \"processingTool\" : \"processingTool\",  \"created\" : \"2000-01-23T04:56:07.000+00:00\",  \"areaOfInterest\" : {    \"extent\" : [ -151.17018, -151.17018, -151.17018, -151.17018 ]  },  \"inputs\" : [ {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  }, {    \"identifier\" : \"identifier\",    \"sourceType\" : \"SensorWebSubsetDefinition\"  } ],  \"description\" : \"description\",  \"lastFinishedExecution\" : \"2000-01-23T04:56:07.000+00:00\",  \"useCase\" : \"useCase\",  \"temporalCoverage\" : {    \"duration\" : \"duration\",    \"previousExecution\" : true  },  \"name\" : \"name\",  \"id\" : \"046b6c7f-0b8a-43b9-b35d-6489e6daee91\"}");
                                     break;
                                 }
                             }

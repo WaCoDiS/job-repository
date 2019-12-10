@@ -3,6 +3,7 @@ package de.wacodis.jobdefinition.controller;
 import de.wacodis.jobdefinition.model.PaginatedWacodisJobDefinitionResponse;
 import de.wacodis.jobdefinition.model.WacodisJobDefinition;
 import de.wacodis.jobdefinition.model.WacodisJobStatus;
+import de.wacodis.jobdefinition.model.WacodisJobStatusUpdate;
 import de.wacodis.jobdefinition.persistence.WacodisJobDefinitionRepository;
 import de.wacodis.jobdefinition.streams.StreamBinder;
 import io.swagger.annotations.ApiParam;
@@ -117,26 +118,26 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
     public ResponseEntity<WacodisJobDefinition> updateJobStatus(
             @ApiParam(value = "WacodisJobDefinition to add to the repository ", required = true)
             @Valid
-            @RequestBody WacodisJobDefinition wacodisJobDefinition) {
-        LOGGER.info("updade status for WacodisJobDefinition with id {}", wacodisJobDefinition.getId().toString());
+            @RequestBody WacodisJobStatusUpdate wacodisJobStatusUpdate) {
+        LOGGER.info("updade status for WacodisJobDefinition with id {}", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
         //first retrieve currently stored job to update status
-        ResponseEntity<WacodisJobDefinition> getByIdResponse = retrieveWacodisJobDefinitionById(wacodisJobDefinition.getId().toString());
+        ResponseEntity<WacodisJobDefinition> getByIdResponse = retrieveWacodisJobDefinitionById(wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
         HttpStatus responseStatus = getByIdResponse.getStatusCode();
 
         if (responseStatus.equals(HttpStatus.OK)) {
-            LOGGER.debug("retrieved current data for WacodisJobDefinition with id {} from backend", wacodisJobDefinition.getId().toString());
+            LOGGER.debug("retrieved current data for WacodisJobDefinition with id {} from backend", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
             WacodisJobDefinition currentJob = getByIdResponse.getBody();
             //merge status
-            mergeStatusAttributes(wacodisJobDefinition, currentJob);
-            WacodisJobDefinition updatedJobDefiniton = repo.save(wacodisJobDefinition);
-            LOGGER.info("successfully updated status for WacodisJobDefintion with id {} and wrote updated data to backend", wacodisJobDefinition.getId().toString());
+            mergeStatusAttributes(wacodisJobStatusUpdate, currentJob);
+            WacodisJobDefinition updatedJobDefiniton = repo.save(currentJob);
+            LOGGER.info("successfully updated status for WacodisJobDefintion with id {} and wrote updated data to backend", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
             return new ResponseEntity<>(updatedJobDefiniton, HttpStatus.OK); //return updated job definition
         } else {
             if (responseStatus.equals(HttpStatus.NOT_FOUND)) {
-                LOGGER.warn("unable to update status for WacodisJobDefintion with id {}, could not found WacodisJobDefintion with id {}", wacodisJobDefinition.getId().toString(), wacodisJobDefinition.getId().toString());
+                LOGGER.warn("unable to update status for WacodisJobDefintion with id {}, could not found WacodisJobDefintion with id {}", wacodisJobStatusUpdate.getWacodisJobIdentifier(), wacodisJobStatusUpdate.getWacodisJobIdentifier());
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } else {
-                LOGGER.error("unable to retrieve WacodisJobDefinition with id {} from backend, request responded with status code {} and body {}.", wacodisJobDefinition.getId().toString(), responseStatus.toString(), getByIdResponse.getBody());
+                LOGGER.error("unable to retrieve WacodisJobDefinition with id {} from backend, request responded with status code {} and body {}.", wacodisJobStatusUpdate.getWacodisJobIdentifier(), responseStatus, getByIdResponse.getBody());
                 //ToDo respond with Error body
                 //de.wacodis.jobdefinition.model.Error error = new de.wacodis.jobdefinition.model.Error();
                 //error.setCode(500);
@@ -146,11 +147,11 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
         }
     }
 
-    private void mergeStatusAttributes(WacodisJobDefinition jobWithNewStatus, WacodisJobDefinition currentJob) {
-        currentJob.setStatus(jobWithNewStatus.getStatus());
+    private void mergeStatusAttributes(WacodisJobStatusUpdate newStatus, WacodisJobDefinition currentJob) {
+        currentJob.setStatus(newStatus.getNewStatus());
         
-        if(jobWithNewStatus.getLastFinishedExecution() != null){
-            currentJob.setLastFinishedExecution(jobWithNewStatus.getLastFinishedExecution());
+        if(newStatus.getExecutionFinished()!= null){
+            currentJob.setLastFinishedExecution(newStatus.getExecutionFinished());
         }
     }
 }
