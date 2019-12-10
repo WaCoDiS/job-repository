@@ -24,7 +24,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.SpringCodegen",
-        date = "2019-12-06T16:57:56.752+01:00[Europe/Berlin]")
+        date = "2019-12-10T11:26:33.960+01:00[Europe/Berlin]")
 @Validated
 @Api(value = "jobDefinitions", description = "the jobDefinitions API")
 public interface JobDefinitionsApi {
@@ -197,14 +197,14 @@ public interface JobDefinitionsApi {
                 @ApiResponse(code = 500, message = "unexpected error ", response = Error.class)
             })
     @RequestMapping(
-            value = "/jobDefinitions/jobstatus/{id}",
+            value = "/jobDefinitions/jobstatus",
             produces = {"application/json"},
             consumes = {"application/json"},
             method = RequestMethod.PATCH)
-    default ResponseEntity<?> updateJobStatus(
+    default ResponseEntity<WacodisJobDefinition> updateJobStatus(
             @ApiParam(
                             value =
-                                    "WacodisJobDefinition with new job status, only attributes status and lastFinishedExecution are changed ",
+                                    "WacodisJobDefinition with new job status, only attributes status and lastFinishedExecution are relevant ",
                             required = true)
                     @Valid
                     @RequestBody

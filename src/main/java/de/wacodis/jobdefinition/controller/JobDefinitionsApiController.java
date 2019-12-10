@@ -113,7 +113,7 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
     }
 
     @Override
-    public ResponseEntity<?> updateJobStatus(
+    public ResponseEntity<WacodisJobDefinition> updateJobStatus(
             @ApiParam(value = "WacodisJobDefinition to add to the repository ", required = true)
             @Valid
             @RequestBody WacodisJobDefinition wacodisJobDefinition) {
@@ -136,10 +136,11 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             } else {
                 LOGGER.error("unable to retrieve WacodisJobDefinition with id {} from backend, request responded with status code {} and body {}.", wacodisJobDefinition.getId().toString(), responseStatus.toString(), getByIdResponse.getBody());
-                de.wacodis.jobdefinition.model.Error error = new de.wacodis.jobdefinition.model.Error();
-                error.setCode(500);
-                error.setMessage("unexpected error occured while retrieving current data for job " + wacodisJobDefinition.getId().toString());
-                return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+                //ToDo respond with Error body
+                //de.wacodis.jobdefinition.model.Error error = new de.wacodis.jobdefinition.model.Error();
+                //error.setCode(500);
+                //error.setMessage("unexpected error occured while retrieving current data for job " + wacodisJobDefinition.getId().toString());
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
     }
