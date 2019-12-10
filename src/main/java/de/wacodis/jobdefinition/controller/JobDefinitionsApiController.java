@@ -2,6 +2,7 @@ package de.wacodis.jobdefinition.controller;
 
 import de.wacodis.jobdefinition.model.PaginatedWacodisJobDefinitionResponse;
 import de.wacodis.jobdefinition.model.WacodisJobDefinition;
+import de.wacodis.jobdefinition.model.WacodisJobStatus;
 import de.wacodis.jobdefinition.persistence.WacodisJobDefinitionRepository;
 import de.wacodis.jobdefinition.streams.StreamBinder;
 import io.swagger.annotations.ApiParam;
@@ -53,7 +54,7 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
     public ResponseEntity<WacodisJobDefinition> createWacodisJobDefinition(@RequestBody WacodisJobDefinition job) {
         job.setId(UUID.randomUUID());
         job.setCreated(new DateTime());
-        job.setStatus(WacodisJobDefinition.StatusEnum.WAITING);
+        job.setStatus(WacodisJobStatus.WAITING);
         repo.save(job);
         streams.newJobCreated(job);
         return new ResponseEntity<>(job, HttpStatus.CREATED);
