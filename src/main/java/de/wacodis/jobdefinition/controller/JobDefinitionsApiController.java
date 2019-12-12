@@ -1,5 +1,6 @@
 package de.wacodis.jobdefinition.controller;
 
+import de.wacodis.jobdefinition.controller.exception.JobStatusUpdateException;
 import de.wacodis.jobdefinition.model.PaginatedWacodisJobDefinitionResponse;
 import de.wacodis.jobdefinition.model.WacodisJobDefinition;
 import de.wacodis.jobdefinition.model.WacodisJobStatus;
@@ -30,7 +31,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 @Controller
 @RequestMapping("${openapi.waCoDiSJobDefinition.base-path:}")
 public class JobDefinitionsApiController implements JobDefinitionsApi {
-    
+
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(JobDefinitionsApiController.class);
 
     @Autowired
@@ -121,36 +122,48 @@ public class JobDefinitionsApiController implements JobDefinitionsApi {
             @RequestBody WacodisJobStatusUpdate wacodisJobStatusUpdate) {
         LOGGER.info("updade status for WacodisJobDefinition with id {}", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
         //first retrieve currently stored job to update status
-        ResponseEntity<WacodisJobDefinition> getByIdResponse = retrieveWacodisJobDefinitionById(wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
-        HttpStatus responseStatus = getByIdResponse.getStatusCode();
+
+        ResponseEntity<WacodisJobDefinition> getByIdResponse = null;
+        HttpStatus responseStatus = null;
+        try {
+            getByIdResponse = retrieveWacodisJobDefinitionById(wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
+            responseStatus = getByIdResponse.getStatusCode();
+        } catch (Exception ex) {
+            String errorMsg = "unexpected error occured while retrieving stored data for WacodisJobDefinition with id " + wacodisJobStatusUpdate.getWacodisJobIdentifier();
+            LOGGER.error(errorMsg, ex);
+            throw new JobStatusUpdateException("unable to update job status, " + errorMsg, ex, wacodisJobStatusUpdate);
+        }
 
         if (responseStatus.equals(HttpStatus.OK)) {
-            LOGGER.debug("retrieved current data for WacodisJobDefinition with id {} from backend", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
-            WacodisJobDefinition currentJob = getByIdResponse.getBody();
-            //merge status
-            mergeStatusAttributes(wacodisJobStatusUpdate, currentJob);
-            WacodisJobDefinition updatedJobDefiniton = repo.save(currentJob);
-            LOGGER.info("successfully updated status for WacodisJobDefintion with id {} and wrote updated data to backend", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
-            return new ResponseEntity<>(updatedJobDefiniton, HttpStatus.OK); //return updated job definition
+            try {
+                LOGGER.debug("retrieved current data for WacodisJobDefinition with id {} from backend", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
+
+                WacodisJobDefinition currentJob = getByIdResponse.getBody();
+
+                mergeStatusAttributes(wacodisJobStatusUpdate, currentJob); //merge new status into current job definition
+                WacodisJobDefinition updatedJobDefiniton = repo.save(currentJob); //store merged job definition
+                LOGGER.info("successfully updated status for WacodisJobDefintion with id {} and wrote updated data to backend", wacodisJobStatusUpdate.getWacodisJobIdentifier().toString());
+                return new ResponseEntity<>(updatedJobDefiniton, HttpStatus.OK); //return updated job definition
+            } catch (Exception ex) {
+                String errorMsg = "unexpected error occured while updating status of WacodisJobDefinition with id " + wacodisJobStatusUpdate.getWacodisJobIdentifier();
+                LOGGER.error(errorMsg + ", could not write updated WacodisJobDefinition to backend", ex);
+                throw new JobStatusUpdateException("unable to update job status, " + errorMsg, ex, wacodisJobStatusUpdate);
+            }
         } else {
             if (responseStatus.equals(HttpStatus.NOT_FOUND)) {
-                LOGGER.warn("unable to update status for WacodisJobDefintion with id {}, could not found WacodisJobDefintion with id {}", wacodisJobStatusUpdate.getWacodisJobIdentifier(), wacodisJobStatusUpdate.getWacodisJobIdentifier());
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                LOGGER.warn("unable to update status for WacodisJobDefintion with id {}, could not find WacodisJobDefintion with id {}", wacodisJobStatusUpdate.getWacodisJobIdentifier(), wacodisJobStatusUpdate.getWacodisJobIdentifier());
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); //respond with 404 Not Found according to api definition
             } else {
                 LOGGER.error("unable to retrieve WacodisJobDefinition with id {} from backend, request responded with status code {} and body {}.", wacodisJobStatusUpdate.getWacodisJobIdentifier(), responseStatus, getByIdResponse.getBody());
-                //ToDo respond with Error body
-                //de.wacodis.jobdefinition.model.Error error = new de.wacodis.jobdefinition.model.Error();
-                //error.setCode(500);
-                //error.setMessage("unexpected error occured while retrieving current data for job " + wacodisJobDefinition.getId().toString());
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                throw new JobStatusUpdateException("unable to update job status, unexpected error occured while retrieving stored data for WacodisJobDefinition with id " + wacodisJobStatusUpdate.getWacodisJobIdentifier(), wacodisJobStatusUpdate, responseStatus);
             }
         }
     }
 
     private void mergeStatusAttributes(WacodisJobStatusUpdate newStatus, WacodisJobDefinition currentJob) {
         currentJob.setStatus(newStatus.getNewStatus());
-        
-        if(newStatus.getExecutionFinished()!= null){
+
+        if (newStatus.getExecutionFinished() != null) {
             currentJob.setLastFinishedExecution(newStatus.getExecutionFinished());
         }
     }
