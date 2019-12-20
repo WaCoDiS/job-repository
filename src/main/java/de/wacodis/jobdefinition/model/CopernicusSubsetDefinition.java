@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * contains information for defining a subset definition for Copernicus process inputs
  */
 @ApiModel(description = "contains information for defining a subset definition for Copernicus process inputs")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-10T15:08:37.211+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T13:21:52.827+01:00[Europe/Berlin]")
 
 public class CopernicusSubsetDefinition extends AbstractSubsetDefinition implements Serializable {
   private static final long serialVersionUID = 1L;

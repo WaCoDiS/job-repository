@@ -23,11 +23,13 @@ import org.springframework.data.elasticsearch.annotations.Document;
  * contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes
  */
 @ApiModel(description = "contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-10T15:08:37.211+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2019-12-20T13:21:52.827+01:00[Europe/Berlin]")
 @Document(indexName = "wacodis", type = "job")
 public class WacodisJobDefinition  implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String TABLE_NAME = "jobDefinitions";
+  
   @JsonProperty("id")
   private UUID id = null;
 
