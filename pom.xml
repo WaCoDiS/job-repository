@@ -17,6 +17,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <scm>
+		<url>https://github.com/WaCoDiS/job-definition-api/</url>
+		<connection>scm:git:git://github.com/WaCoDiS/job-definition-api.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/WaCoDiS/job-definition-api.git</developerConnection>
+		<tag>v1.0.0</tag>
+	</scm>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -26,13 +33,6 @@
     </properties>
 
     <dependencies>
-        <!-- WaCoDiS deps-->
-        <!--        <dependency>
-            <groupId>de.wacodis</groupId>
-            <artifactId>data-models</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
-        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -130,6 +130,7 @@
     
 
     <build>
+        <finalName>${app.finalName}</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -172,7 +173,7 @@
                                         <artifactItem>
                                             <groupId>de.wacodis</groupId>
                                             <artifactId>openapi</artifactId>
-                                            <version>0.0.1-SNAPSHOT</version>
+                                            <version>1.0.0</version>
                                             <type>jar</type>
                                             <includes>definitions/wacodis-schemas.yml</includes>
                                             <outputDirectory>${project.basedir}/src/main/resources</outputDirectory>
@@ -215,7 +216,7 @@
                 <dependency>
                     <groupId>de.wacodis</groupId>
                     <artifactId>openapi</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
+                    <version>1.0.0</version>
                 </dependency>
                 <dependency>
                     <groupId>org.openapitools</groupId>

@@ -21,4 +21,4 @@ COPY ./docker/wait-for-it.sh /wait-for-it.sh
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
-EXPOSE 8081
+EXPOSE 8080
