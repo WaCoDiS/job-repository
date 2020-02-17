@@ -12,7 +12,7 @@ RUN cd /tmp/job-api && mvn clean install -DskipTests=true
 RUN bash -c 'find /tmp/job-api/target -maxdepth 1 -size +1048576c | grep job-definition-api | xargs -I{} mv {} /app.jar'
 
 # now the runnable image
-FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk/openjdk8:alpine
 
 # copy over the dist from the base build image
 COPY --from=base /app.jar /app.jar
