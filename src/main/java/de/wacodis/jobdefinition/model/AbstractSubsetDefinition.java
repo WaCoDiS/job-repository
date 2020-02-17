@@ -12,11 +12,13 @@ import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
+// after model generation: include = JsonTypeInfo.As.EXISTING_PROPERTY must be set on the "sourceType"
+
 /**
  * abstract type for job input subsets
  */
 @ApiModel(description = "abstract type for job input subsets")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-24T10:35:39.638+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-17T17:54:41.567+01:00[Europe/Berlin]")
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "sourceType", visible = true)
 @JsonSubTypes({

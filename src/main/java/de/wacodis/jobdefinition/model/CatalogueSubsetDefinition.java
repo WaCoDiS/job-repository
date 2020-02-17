@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * contains information for defining a subset definition for process inputs from catalogue service
  */
 @ApiModel(description = "contains information for defining a subset definition for process inputs from catalogue service")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-01-24T10:35:39.638+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-17T17:54:41.567+01:00[Europe/Berlin]")
 
 public class CatalogueSubsetDefinition extends AbstractSubsetDefinition implements Serializable {
   private static final long serialVersionUID = 1L;

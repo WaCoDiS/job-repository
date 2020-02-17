@@ -3,6 +3,7 @@ package de.wacodis.jobdefinition.model;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import de.wacodis.jobdefinition.model.AbstractDataEnvelopeAreaOfInterest;
 import de.wacodis.jobdefinition.model.AbstractSubsetDefinition;
 import de.wacodis.jobdefinition.model.WacodisJobDefinitionExecution;
@@ -17,17 +18,24 @@ import org.joda.time.DateTime;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import org.joda.time.DateTime;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 /**
  * contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes
  */
 @ApiModel(description = "contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-17T11:57:39.360+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-17T17:54:41.567+01:00[Europe/Berlin]")
 
+@Document(indexName = "wacodis", type = "job")
 public class WacodisJobDefinition  implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  public static final String TABLE_NAME = "jobDefinitions";
+    
   @JsonProperty("id")
+  @Id
   private UUID id = null;
 
   @JsonProperty("name")
