@@ -11,8 +11,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import de.wacodis.jobdefinition.model.WacodisJobDefinition;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
@@ -24,6 +27,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.core.DefaultResultMapper;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.EntityMapper;
@@ -53,6 +57,31 @@ public class ElasticsearchConfig {
 
     @Bean
     public Client client() throws UnknownHostException {
+
+        // check if the annotations are available. if not, they might have
+        // been overridden during model generation
+
+        Document docAnno = WacodisJobDefinition.class.getAnnotation(Document.class);
+        if (docAnno == null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("The Spring Data Annotations are missing on the class ")
+                    .append(WacodisJobDefinition.class.getSimpleName())
+                    .append("! ")
+                    .append("Always ensure that after generation of model classes ")
+                    .append("to re-include the required annotations. ")
+                    .append("Compare with previous commit/state.");
+            throw new IllegalStateException(sb.toString());
+        } else if (docAnno.indexName() == null || docAnno.type() == null || docAnno.type().isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("The Spring Data Annotations are not defined correctly on the class ")
+                    .append(WacodisJobDefinition.class.getSimpleName())
+                    .append("! ")
+                    .append("Always ensure that after generation of model classes ")
+                    .append("to re-include the required annotations and their values. ")
+                    .append("Compare with previous commit/state.");
+            throw new IllegalStateException(sb.toString());
+        }
+
         Settings elasticsearchSettings = Settings.builder()
                 .put("client.transport.sniff", false)
                 .put("cluster.name", clusterName).build();
