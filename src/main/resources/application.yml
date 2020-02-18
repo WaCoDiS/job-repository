@@ -34,10 +34,10 @@ spring:
     port: 5672
     username: rabbitmq
     password: rabbitmq
-data:
-  elasticsearch:
-    cluster:
-      name: elasticsearch_wacodis
-    host: localhost
-    port: 9200
-    nativePort: 9300
+  data:
+    elasticsearch:
+      cluster:
+        name: elasticsearch_wacodis
+      host: localhost
+      port: 9200
+      nativePort: 9300
