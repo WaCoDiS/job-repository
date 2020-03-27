@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
 @ApiModel(description = "abstract type for job input subsets")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-03-27T13:18:34.981+01:00[Europe/Berlin]")
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "sourceType", visible = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "sourceType", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = SensorWebSubsetDefinition.class, name = "SensorWebSubsetDefinition"),
   @JsonSubTypes.Type(value = CopernicusSubsetDefinition.class, name = "CopernicusSubsetDefinition"),
