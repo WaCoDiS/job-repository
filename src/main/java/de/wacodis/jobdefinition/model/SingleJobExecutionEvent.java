@@ -16,33 +16,34 @@ import javax.validation.constraints.*;
  * event that describes a single execution of a wacods job without regular schedule 
  */
 @ApiModel(description = "event that describes a single execution of a wacods job without regular schedule ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-02-18T14:44:43.288+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-03-27T13:18:34.981+01:00[Europe/Berlin]")
 
 public class SingleJobExecutionEvent extends AbstractWacodisJobExecutionEvent implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  @JsonProperty("startAt")
-  private DateTime startAt = null;
+  @JsonProperty("temporalCoverageEndDate")
+  private DateTime temporalCoverageEndDate = null;
 
-  public SingleJobExecutionEvent startAt(DateTime startAt) {
-    this.startAt = startAt;
+  public SingleJobExecutionEvent temporalCoverageEndDate(DateTime temporalCoverageEndDate) {
+    this.temporalCoverageEndDate = temporalCoverageEndDate;
     return this;
   }
 
   /**
-   * date on which the wacodis job should be executed, null if wacodis job should be executed immediately 
-   * @return startAt
+   * Determines together with WacodisJobDefinition.temporalCoverage.duration which time period has to be considered for inputs. The attribute WacodisJobDefinition.temporalCoverage.duration has to be specified in WacodisJobDefinition. 
+   * @return temporalCoverageEndDate
   **/
-  @ApiModelProperty(value = "date on which the wacodis job should be executed, null if wacodis job should be executed immediately ")
+  @ApiModelProperty(required = true, value = "Determines together with WacodisJobDefinition.temporalCoverage.duration which time period has to be considered for inputs. The attribute WacodisJobDefinition.temporalCoverage.duration has to be specified in WacodisJobDefinition. ")
+  @NotNull
 
   @Valid
 
-  public DateTime getStartAt() {
-    return startAt;
+  public DateTime getTemporalCoverageEndDate() {
+    return temporalCoverageEndDate;
   }
 
-  public void setStartAt(DateTime startAt) {
-    this.startAt = startAt;
+  public void setTemporalCoverageEndDate(DateTime temporalCoverageEndDate) {
+    this.temporalCoverageEndDate = temporalCoverageEndDate;
   }
 
 
@@ -55,13 +56,13 @@ public class SingleJobExecutionEvent extends AbstractWacodisJobExecutionEvent im
       return false;
     }
     SingleJobExecutionEvent singleJobExecutionEvent = (SingleJobExecutionEvent) o;
-    return Objects.equals(this.startAt, singleJobExecutionEvent.startAt) &&
+    return Objects.equals(this.temporalCoverageEndDate, singleJobExecutionEvent.temporalCoverageEndDate) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(startAt, super.hashCode());
+    return Objects.hash(temporalCoverageEndDate, super.hashCode());
   }
 
   @Override
@@ -69,7 +70,7 @@ public class SingleJobExecutionEvent extends AbstractWacodisJobExecutionEvent im
     StringBuilder sb = new StringBuilder();
     sb.append("class SingleJobExecutionEvent {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    startAt: ").append(toIndentedString(startAt)).append("\n");
+    sb.append("    temporalCoverageEndDate: ").append(toIndentedString(temporalCoverageEndDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }
