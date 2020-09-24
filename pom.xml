@@ -20,7 +20,7 @@
 		<url>https://github.com/WaCoDiS/job-definition-api/</url>
 		<connection>scm:git:git://github.com/WaCoDiS/job-definition-api.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/WaCoDiS/job-definition-api.git</developerConnection>
-		<tag>job-definition-api-1.1.0</tag>
+		<tag>v1.1.0</tag>
 	</scm>
     
     <properties>
