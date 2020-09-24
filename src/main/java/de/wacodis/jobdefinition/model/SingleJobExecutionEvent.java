@@ -34,9 +34,6 @@ public class SingleJobExecutionEvent extends AbstractWacodisJobExecutionEvent im
    * @return temporalCoverageEndDate
   **/
   @ApiModelProperty(required = true, value = "determines together with WacodisJobDefinition.temporalCoverage.duration which time period has to be considered for inputs. The attribute WacodisJobDefinition.temporalCoverage.duration has to be specified in WacodisJobDefinition. ")
-  @NotNull
-
-  @Valid
 
   public DateTime getTemporalCoverageEndDate() {
     return temporalCoverageEndDate;

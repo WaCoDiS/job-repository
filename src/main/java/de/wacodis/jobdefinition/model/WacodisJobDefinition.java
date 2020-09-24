@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.joda.time.DateTime;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -24,10 +26,13 @@ import javax.validation.constraints.*;
  * contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes
  */
 @ApiModel(description = "contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes")
+@Document(indexName = "wacodis", type = "job")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-24T17:31:31.130044800+02:00[Europe/Berlin]")
 
 public class WacodisJobDefinition  implements Serializable {
   private static final long serialVersionUID = 1L;
+
+  public static final String TABLE_NAME = "jobDefinitions";
 
   @JsonProperty("id")
   private UUID id = null;
@@ -357,9 +362,6 @@ public class WacodisJobDefinition  implements Serializable {
    * @return executionSettings
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-  @Valid
 
   public WacodisJobDefinitionExecutionSettings getExecutionSettings() {
     return executionSettings;
