@@ -3,7 +3,7 @@ services:
   job-definition-api:
     build:
       context: .
-    image: registry.wacodis.demo.52north.org/job-definition-api:1.0.1
+    image: registry.wacodis.demo.52north.org/job-definition-api:1.1.0
     ports:
       - 8080:8080
     environment: 
