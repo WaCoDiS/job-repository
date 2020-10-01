@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
 @ApiModel(description = "abstract type to describe event-based execution of wacodis jobs ")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-30T17:08:08.134+02:00[Europe/Berlin]")
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "eventType", visible = true)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "eventType", visible = true)
 @JsonSubTypes({
   @JsonSubTypes.Type(value = SingleJobExecutionEvent.class, name = "SingleJobExecutionEvent"),
 })
