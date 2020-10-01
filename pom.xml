@@ -17,11 +17,11 @@
     </parent>
 
     <scm>
-		<url>https://github.com/WaCoDiS/job-definition-api/</url>
-		<connection>scm:git:git://github.com/WaCoDiS/job-definition-api.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/WaCoDiS/job-definition-api.git</developerConnection>
-		<tag>v1.0.1</tag>
-	</scm>
+        <url>https://github.com/WaCoDiS/job-definition-api/</url>
+        <connection>scm:git:git://github.com/WaCoDiS/job-definition-api.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/WaCoDiS/job-definition-api.git</developerConnection>
+        <tag>v1.0.1</tag>
+    </scm>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -149,6 +149,14 @@
                 <groupId>pl.project13.maven</groupId>
                 <artifactId>git-commit-id-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <configuration>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <pushChanges>false</pushChanges>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -247,7 +255,7 @@
                                     <url>https://raw.githubusercontent.com/WaCoDiS/apis-and-workflows/master/openapi/src/main/definitions/wacodis-schemas.yml</url>
                                     <unpack>false</unpack>
                                     <outputDirectory>${project.basedir}/src/main/resources/definitions</outputDirectory>
-                                     <skipCache>true</skipCache>
+                                    <skipCache>true</skipCache>
                                 </configuration>
                             </execution>                                   
                         </executions>
