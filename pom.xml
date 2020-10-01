@@ -4,7 +4,7 @@
 
     <groupId>de.wacodis</groupId>
     <artifactId>job-definition-api</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
     <name>WaCoDis job definition api</name>
@@ -20,7 +20,7 @@
         <url>https://github.com/WaCoDiS/job-definition-api/</url>
         <connection>scm:git:git://github.com/WaCoDiS/job-definition-api.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/WaCoDiS/job-definition-api.git</developerConnection>
-        <tag>v1.0.1</tag>
+        <tag>v1.2.0</tag>
     </scm>
     
     <properties>
