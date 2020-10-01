@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
  * event that describes a single execution of a wacods job without regular schedule 
  */
 @ApiModel(description = "event that describes a single execution of a wacods job without regular schedule ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-24T17:31:31.130044800+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-30T17:08:08.134+02:00[Europe/Berlin]")
 
 public class SingleJobExecutionEvent extends AbstractWacodisJobExecutionEvent implements Serializable {
   private static final long serialVersionUID = 1L;
