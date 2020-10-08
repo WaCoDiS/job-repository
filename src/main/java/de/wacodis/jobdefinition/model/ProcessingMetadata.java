@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
  * extensible datatype for metadata that describes the processing of a product 
  */
 @ApiModel(description = "extensible datatype for metadata that describes the processing of a product ")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-24T17:31:31.130044800+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-30T17:08:08.134+02:00[Europe/Berlin]")
 
 public class ProcessingMetadata  implements Serializable {
   private static final long serialVersionUID = 1L;

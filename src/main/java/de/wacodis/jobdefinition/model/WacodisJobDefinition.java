@@ -26,15 +26,15 @@ import javax.validation.constraints.*;
  * contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes
  */
 @ApiModel(description = "contains information about a WaCoDiS Job that will be used for scheduling, preparing and executing certain processes")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-30T17:08:08.134+02:00[Europe/Berlin]")
 @Document(indexName = "wacodis", type = "job")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-09-24T17:31:31.130044800+02:00[Europe/Berlin]")
-
 public class WacodisJobDefinition  implements Serializable {
   private static final long serialVersionUID = 1L;
-
+  
   public static final String TABLE_NAME = "jobDefinitions";
 
   @JsonProperty("id")
+  @Id
   private UUID id = null;
 
   @JsonProperty("name")
