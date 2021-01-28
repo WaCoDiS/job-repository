@@ -48,8 +48,8 @@ The **WaCoDiS Job Definition API** stores processing jobs (WaCoDiS jobs) and pro
 ### Core Data Types
 The WaCoDIS data schema exist as an [OpenAPI definition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml).
 
-* **Job**  
-A _WacodisJobDefinition_ (Job) describes a processing that is to be executed automatically according to a defined schedule. The WacodisJobDefinition contains (among other attributes) the input data required for execution, as well as the time frame and area of interest. 
+* **Processing Job**  
+A _WacodisJobDefinition_ (Job) describes a processing job that is to be executed automatically according to a defined schedule. The WacodisJobDefinition contains (among other attributes) the input data required for execution, as well as the time frame and area of interest. 
 ### Modules
 The WaCoDiS Job Definition API is a stand-alone Spring Boot application comprisiung only a single module.
 ### Utilized Technologies
