@@ -201,7 +201,7 @@ public class WacodisJobDefinition implements Serializable {
     @Id
     private UUID id = null;
 ```
-4. WacodisJobDefinition.java
+4. WacodisJobDefinition.java  
 Remove annotations (*@NotNull, @Valid*) in order to ensure downwards compatibility (only method *getExecutionSettings()*). Do not delete other existing annotations.
 ```
     @ApiModelProperty(required = true, value = "")
