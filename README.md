@@ -170,6 +170,37 @@ Alternatively, latest available docker image (automatically built from master br
 ## Contribution - Developer Information
 This section contains information for developers.
 
+### Updating Data Models
+The package *de.wacodis.jobdefinition.model* contains automatically generated java classes for core data types based on the [WaCoDiS schema](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml). If the WaCoDiS schema is extended or changed the classes must be generated again in order to align the java classes with the schema definition.  
+Auto-generation of model classes can be done by running maven `mvn clean install -p download-generate-models`.  
+  
+<ins>The generated model classes must be edited manually to ensure that the Job Definition API runs correctly!</ins>
+
+1. AbstractSubsetDefinition.java  
+Change *include* propterty of annotation *JsonTypeInfo* to *JsonTypeInfo.As.EXISTING_PROPERTY*.
+```
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "backendType", visible = true)
+```
+2. AbstractWacodisExecutionEvent.java  
+Change *include* propterty of annotation *JsonTypeInfo* to *JsonTypeInfo.As.EXISTING_PROPERTY*.
+```
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "sourceType", visible = true)
+```
+3. WacodisJobDefinition.java  
+add annotations (*Dcoument*,*@ID*) and static variable *TABLENAME* for elasticsearch connectivity. Do not delete existing annotations.
+```
+@Document(indexName = "wacodis", type = "job")
+public class WacodisJobDefinition implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    public static final String TABLE_NAME = "jobDefinitions";
+
+    @JsonProperty("id")
+    @Id
+    private UUID id = null;
+```
+
 ### Branching
 The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of development.
 
