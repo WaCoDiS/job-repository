@@ -1,7 +1,8 @@
 # WaCoDiS Job Definition API
 ![Java CI](https://github.com/WaCoDiS/metadata-connector/workflows/Java%20CI/badge.svg)
   
-The **WaCoDiS Job Definition API** provides an API for managing processing jobs (WaCoDiS jobs).  
+The **WaCoDiS Job Definition API** provides an API for managing processing jobs (WaCoDiS jobs). 
+  
 **Table of Content**  
 
 1. [WaCoDiS Project Information](#wacodis-project-information)
