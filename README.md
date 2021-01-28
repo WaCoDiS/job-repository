@@ -44,7 +44,7 @@ For a detailed overview about the WaCoDiS system architecture please visit the
 **[WaCoDiS Core Engine](https://github.com/WaCoDiS/core-engine)** repository.  
 
 ## Overview  
-The **WaCoDiS Job Definition API** stores processing jobs (WaCoDiS jobs) and provides an API for managing processing jobs. The API offers endpoints for creating, updating and deleting processing jobs as well as an endpoint to retrieve stored processing jobs. If a processing job is created or deleted the Job Definition component publish a notification ([WacodisJobDefinition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml)) via the WaCoDiS system's message broker (RabbitMQ).
+The **WaCoDiS Job Definition API** stores processing jobs (WaCoDiS jobs) and provides an API for managing processing jobs. The API offers endpoints for creating, updating and deleting processing jobs as well as an endpoint to retrieve stored processing jobs. If a processing job is created or deleted the Job Definition component publishes a notification ([WacodisJobDefinition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml)) via the WaCoDiS system's message broker (RabbitMQ).
 ### Core Data Types
 The WaCoDIS data schema exist as an [OpenAPI definition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml).
 
@@ -71,20 +71,16 @@ For storing processing jobs WaCoDiS Job Defintion API uses the search engine tec
 OpenAPI is used for the specification of core WaCoDiS data model and APIs.  
 
 ### Job Definition REST API  
-The Job Definition APIs REST interface is defined as [OpenAPI definition]().
+The Job Definition APIs REST interface is defined as [OpenAPI definition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/job-definition-api.yml).
   
 **Endpoints:**  
   
-* **/resources/search**  
-Used for finding available Resources that match SubsetDefinitions. The body for a **HTTP-Post** request contains a DataResourceAccessSearchBody which defines a spatial extent, a time frame and a list of SubsetDefinition. The service's response is a map which uses the transmitted SubsetDefinitions as keys and lists of matching resources as values. Resources can be either GetResources which contain a URL that references the actual data directly or a PostResources which contains a URL and a HTTP-Post body.
-* **/dataenvelopes**  
-Used for adding new DataEnvelopes to the metadata storage. The DataEnvelope to add is contained in the body of a **HTTP-Post** request. The _identifier_ attribute of a DataEnvelope is assigned by the Data Access Service. The response contains the newly added DataEnvelope including the assigned identifier.
-* **/dataenvelopes/{id}**  
-The **HTTP-GET** method of this endpoint is used for retrieving a DataEnvelope by its identifier (which was assigned by Data Access when adding the DataEnvelope to the metadata storage).  
-The **HTTP-PUT** method of this endpoint is used for updating stored DataEnvelopes which already have an indentifier assigned by Data Access.   
-The **HTTP-Delete** method of this endpoint is used for removing DataEnvelopes from metadata storage.
-* **/dataenvelopes/search**  
-Used for finding stored DataEnvelopes. A DataEnvelope is send to the service via **HTTP-POST** request. The service checks if a DataEnvelope with the same values is already exisiting in the metadata storage. If a matching DataEnvelope is found the indentifier ot this DataEnvelope is returned by the serivce.  
+* **/jobDefinitions**  
+The **HTTP-GET** method is used for retrieving a paginated list of stored processing jobs (WacodisJobDefinition). The **HTTP-POST** method is used to create new processing jobs (WacodisJobDefinition) in the job repository.
+* **/jobDefinitions/{id}**  
+The **HTTP-GET** method is used for retrieving a single job definition (WacodisJobDefinition) by ID. The **HTTP-DELETE** method is used to delete a existing processing job from the repository. 
+* **/jobDefinitions/jobstatus**  
+The **HTTP-PATCH** is used to update the status (e.g. *running, waiting, ...*) of a existing processing job. The data type *WacodisJobStatusUpdate* is to describe the status update.
 
 ## Installation / Building Information
 ### Build from Source
