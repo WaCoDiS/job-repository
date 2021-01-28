@@ -23,6 +23,7 @@ The **WaCoDiS Job Definition API** provides an API for managing processing jobs 
   * [Run Job Definition API](#run-job-definition-api)
     * [Using Docker](#using-docker)
 5. [Contribution - Developer Information](#contribution---developer-information)
+  * [Updating Data Models](#updating-data-models)
   * [Branching](#branching) 
   * [License and Third Party Lib POM Plugins](#license-and-third-party-lib-pom-plugins)
 6. [Contact](#contact)
