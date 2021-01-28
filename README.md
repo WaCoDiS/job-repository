@@ -201,6 +201,23 @@ public class WacodisJobDefinition implements Serializable {
     @Id
     private UUID id = null;
 ```
+4. WacodisJobDefinition.java
+Remove annotations (*@NotNull, @Valid*) in order to ensure downwards compatibility (only method *getExecutionSettings()*). Do not delete other existing annotations.
+```
+    @ApiModelProperty(required = true, value = "")
+    public WacodisJobDefinitionExecutionSettings getExecutionSettings() {
+        return executionSettings;
+    }
+```
+5. WacodisJobStatusUpdate.java  
+Remove required attribute of *@ApiModelProperty* annotation and *@NotNull* annotation (only method *getExecutionFinished*). Do not delete other existing annotations. 
+```
+  @ApiModelProperty(value = "point in time when job execution finished successfully, only needed for updates after succesful job execution ")
+  @Valid
+  public DateTime getExecutionFinished() {
+    return executionFinished;
+  }
+```
 
 ### Branching
 The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of development.
