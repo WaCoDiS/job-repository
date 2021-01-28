@@ -60,7 +60,7 @@ an event-driven workflow. In particular, [Spring Cloud Stream](https://spring.io
 for subscribing to asynchronous messages within thw WaCoDiS system.
 * RabbitMQ  
 For communication with other WaCoDiS components of the WaCoDiS system the message broker [RabbitMQ](https://www.rabbitmq.com/) is utilized. RabbitMQ is not part of WaCoDiS Job Definition API and therefore [must be deployed separately](#preconditions) if WaCoDIS Job Definition API is deployed as part of the whole WaCoDiS system. 
-* Elasticsearch
+* Elasticsearch  
 For storing processing jobs WaCoDiS Job Defintion API uses the search engine technology [Elasticsearch](https://www.elastic.co/downloads/elasticsearch). Elasticsearch is not part of WaCoDiS Job Definition API and therefore must be deployed separately in order [to run this application](#preconditions).  
 * OpenAPI  
 OpenAPI is used for the specification of core WaCoDiS data model and APIs.  
@@ -85,22 +85,22 @@ available, configuration values located at *src/main/resources/application.yml*.
 #### Parameters
 The following section contains descriptions for configuration parameters structured by configuration section.
 
-##### spring/cloud/stream/bindings/tools-execute
-parameters related to messages on started processing jobs
+##### spring/cloud/stream/bindings/job-creation
+parameters related to messages published when a new processing job is created
 
 | value     | description       | note  |
 | ------------- |-------------| -----|
-| destination     | topic used to receive messages about started WaCoDiS jobs | e.g. *wacodis.test.tools.execute* |
+| destination     | topic used to publish messages about created WaCoDiS jobs | e.g. *wacodis.test.jobs.new* |
 | binder      | defines the binder (message broker)   | |
 | content-type      | content type of  DataEnvelope acknowledgement messages (mime type)   | should always be *application/json* |
 
 
-##### spring/cloud/stream/bindings/wacodis.test.tools-finished
-parameters related to message on successfully finished proessing jobs
+##### spring/cloud/stream/bindings/job-deletion
+parameters related to messages published when a existing processing job is deleted
 
 | value     | description       | note  |
 | ------------- |-------------| -----|
-| destination     | topic used to receive message about successfully executed WaCoDiS jobs | e.g. *wacodis.test.tools.finished* |
+| destination     | topic used to publish message about deleted WaCoDiS jobs | e.g. *wacodis.test.jobs.deleted* |
 | binder      | defines the binder (message broker)   |  |
 | content-type      | content type of  DataEnvelope acknowledgement messages (mime type)   | should always be *application/json*  |
 
@@ -123,15 +123,15 @@ parameters related to WaCoDis message broker
 | username | RabbitMQ username (WaCoDiS message broker)   | |
 | password | RabbitMQ password (WaCoDiS message broker)   | |
 
-##### spring/jobdefinitionapi
-parameters to configure connection to WaCoDiS Job Manager
+##### spring/data/elasticsearch
+parameters to configure connection to elasticsearch
 
 | value     | description       | note  |
 | ------------- |-------------| -----|
-| baseurl| base URL of Job Manager service  | e.g. *http://localhost:8080* |
-| apiendpoint | API endpoint (path) for job status update   | e.g. */jobDefinitions/jobstatus/*|
-| httpmethod | HTTP-method to be used   | optional, default is PATCH |
-
+| host| base URL of elasticsearch instance  | e.g. *localhost* |
+| port | port of elasticsearch instance  | e.g. *9200*|
+| nativeport | native port of elasticsearch instance  | e.g. *9300*|
+| cluster/name | name of the elasticsearch cluster  | e.g. *elasticsearch_wacodis*|
 
 
 ### Deployment
