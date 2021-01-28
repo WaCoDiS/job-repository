@@ -75,7 +75,7 @@ Since this is a Maven project, [Apache Maven](https://maven.apache.org/) must be
 can build the project by running `mvn clean install` from root directory
 
 ### Build using Docker
-The project contains a Dockerfile for building a Docker image. Simply run `docker build -t wacodis/job-status-listener:latest .`
+The project contains a Dockerfile for building a Docker image. Simply run `docker build -t wacodis/job-definition-api:latest .`
 in order to build the image. You will find some detailed information about running the Job Definition API as Docker container
 within the [run section](#using-docker) .
 
