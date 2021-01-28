@@ -44,7 +44,12 @@ For a detailed overview about the WaCoDiS system architecture please visit the
 **[WaCoDiS Core Engine](https://github.com/WaCoDiS/core-engine)** repository.  
 
 ## Overview  
-The **WaCoDiS Job Definition API** stores processing jobs (WaCoDiS jobs) and provides an API for managing processing jobs. The API offers endpoints for creating, updating and deleting processing jobs as well as an endpoint to retrieve stored processing jobs. If a processing job is created or deleted the Job Definition component publish a notification ([WacodisJobDefinition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml)) via the WaCoDiS system's message broker (RabbitMQ). 
+The **WaCoDiS Job Definition API** stores processing jobs (WaCoDiS jobs) and provides an API for managing processing jobs. The API offers endpoints for creating, updating and deleting processing jobs as well as an endpoint to retrieve stored processing jobs. If a processing job is created or deleted the Job Definition component publish a notification ([WacodisJobDefinition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml)) via the WaCoDiS system's message broker (RabbitMQ).
+### Core Data Types
+The WaCoDIS data schema exist as an [OpenAPI definition](https://github.com/WaCoDiS/apis-and-workflows/blob/master/openapi/src/main/definitions/wacodis-schemas.yml).
+
+* **Job**  
+A _WacodisJobDefinition_ (Job) describes a processing that is to be executed automatically according to a defined schedule. The WacodisJobDefinition contains (among other attributes) the input data required for execution, as well as the time frame and area of interest. 
 ### Modules
 The WaCoDiS Job Definition API is a stand-alone Spring Boot application comprisiung only a single module.
 ### Utilized Technologies
@@ -65,6 +70,21 @@ For storing processing jobs WaCoDiS Job Defintion API uses the search engine tec
 * OpenAPI  
 OpenAPI is used for the specification of core WaCoDiS data model and APIs.  
 
+### Job Definition REST API  
+The Job Definition APIs REST interface is defined as [OpenAPI definition]().
+  
+**Endpoints:**  
+  
+* **/resources/search**  
+Used for finding available Resources that match SubsetDefinitions. The body for a **HTTP-Post** request contains a DataResourceAccessSearchBody which defines a spatial extent, a time frame and a list of SubsetDefinition. The service's response is a map which uses the transmitted SubsetDefinitions as keys and lists of matching resources as values. Resources can be either GetResources which contain a URL that references the actual data directly or a PostResources which contains a URL and a HTTP-Post body.
+* **/dataenvelopes**  
+Used for adding new DataEnvelopes to the metadata storage. The DataEnvelope to add is contained in the body of a **HTTP-Post** request. The _identifier_ attribute of a DataEnvelope is assigned by the Data Access Service. The response contains the newly added DataEnvelope including the assigned identifier.
+* **/dataenvelopes/{id}**  
+The **HTTP-GET** method of this endpoint is used for retrieving a DataEnvelope by its identifier (which was assigned by Data Access when adding the DataEnvelope to the metadata storage).  
+The **HTTP-PUT** method of this endpoint is used for updating stored DataEnvelopes which already have an indentifier assigned by Data Access.   
+The **HTTP-Delete** method of this endpoint is used for removing DataEnvelopes from metadata storage.
+* **/dataenvelopes/search**  
+Used for finding stored DataEnvelopes. A DataEnvelope is send to the service via **HTTP-POST** request. The service checks if a DataEnvelope with the same values is already exisiting in the metadata storage. If a matching DataEnvelope is found the indentifier ot this DataEnvelope is returned by the serivce.  
 
 ## Installation / Building Information
 ### Build from Source
