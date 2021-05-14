@@ -6,26 +6,10 @@ The **WaCoDiS Job Definition API** provides an API for managing processing jobs 
 **Table of Content**  
 
 1. [WaCoDiS Project Information](#wacodis-project-information)
-  * [Architecture Overview](#architecture-overview)
 2. [Overview](#overview)
-  * [Core Data Types](#core-data-types)
-  * [Modules](#modules)
-  * [Utilized Technologies](#utilized-technologies)
-  * [Job Definition REST API](#job-definition-rest-api)
 3. [Installation / Building Information](#installation--building-information)
-  * [Build from Source](#build-from-source)
-  * [Build using Docker](#build-using-docker)
-  * [Configuration](#configuration)
-    * [Parameters](#parameters)
-  * [Deployment](#deployment)
-    * [Preconditions](#preconditions)
 4. [User Guide](#user-guide)
-  * [Run Job Definition API](#run-job-definition-api)
-    * [Using Docker](#using-docker)
-5. [Contribution - Developer Information](#contribution---developer-information)
-  * [Updating Data Models](#updating-data-models)
-  * [Branching](#branching) 
-  * [License and Third Party Lib POM Plugins](#license-and-third-party-lib-pom-plugins)
+5. [Developer Information](#developer-information)
 6. [Contact](#contact)
 7. [Credits and Contributing Organizations](#credits-and-contributing-organizations)
 
@@ -168,7 +152,7 @@ Job Definition API is a Spring Boot application. Execute the compiled jar (`java
 
 Alternatively, latest available docker image (automatically built from master branch) can be pulled from [Docker Hub](https://hub.docker.com/r/wacodis/job-definition-api). See [WaCoDiS Docker repository](https://github.com/WaCoDiS/wacodis-docker) for pre-configured Docker Compose files to run WaCoDiS system components and backend services (RabbitMQ and Elasticsearch).
 
-## Contribution - Developer Information
+## Developer Information
 This section contains information for developers.
 
 ### Updating Data Models
@@ -222,16 +206,19 @@ Remove required attribute of *@ApiModelProperty* annotation and *@NotNull* annot
 ### Branching
 The master branch provides sources for stable builds. The develop branch represents the latest (maybe unstable) state of development.
 
-### License and Third Party Lib POM Plugins
+### License
 [optional]
 
-## Contact
+### Contributing developers
 |    Name   |   Organization    |    Mail    |
 | :-------------: |:-------------:| :-----:|
-| Sebastian Drost | Bochum University of Applied Sciences | sebastian.drost@hs-bochum.de |
-| Arne Vogt | Bochum University of Applied Sciences | arne.vogt@hs-bochum.de |
-| Andreas Wytzisk  | Bochum University of Applied Sciences | andreas.wytzisk@hs-bochum.de |
-| Matthes Rieke | 52° North GmbH | m.rieke@52north.org |
+| Matthes Rieke | 52° North GmbH | [matthesrieke](https://github.com/matthesrieke) |
+| Arne Vogt | 52° North GmbH | [arnevogt](https://github.com/arnevogt) |
+| Sebastian Drost | 52° North GmbH | [SebaDro](https://github.com/SebaDro) |
+
+## Contact
+The WaCoDiS project is maintained by [52°North GmbH](https://52north.org/). If you have any questions about this or any
+other repository related to WaCoDiS, please contact wacodis-info@52north.org.
 
 ## Credits and Contributing Organizations
 - Department of Geodesy, Bochum University of Applied Sciences, Bochum
